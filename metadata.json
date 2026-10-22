@@ -1,0 +1,8 @@
+{
+  "name": "Autoplex Auto Group",
+  "description": "Premier international used-car e-commerce marketplace offering thousands of quality pre-owned vehicles strictly under $8,000.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
