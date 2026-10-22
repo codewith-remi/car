@@ -10,14 +10,14 @@ const STORAGE_KEY_LOGS = 'autoplex_activity_logs';
 const STORAGE_KEY_CART = 'autoplex_inquiry_cart';
 
 export const DEFAULT_SITE_SETTINGS: SiteSettings = {
-  announcementText: '🔥 Spring Clearance Event: Over 5,000 Verified Pre-Owned Vehicles All Under $8,000!',
+  announcementText: '🔥 Verified Pre-Owned Event: Over 5,000 Vehicles Priced Strictly Between $2,500 and $8,000!',
   announcementEnabled: true,
   supportPhone: '+1 (800) 555-AUTO',
   supportEmail: 'inquiries@autoplexgroup.com',
   dealershipAddress: '10400 Expressway Blvd, Dallas, TX 75238',
   heroHeadline: 'Your Next Car. Your Best Deal.',
-  heroSubheadline: 'Discover thousands of reliable, certified pre-owned vehicles strictly priced below $8,000. Comprehensive mechanical check on every vehicle.',
-  aboutText: 'Autoplex Auto Group was founded with a single mission: to make dependable, safe transportation accessible to every driver without the burden of overwhelming auto debt. Every vehicle in our 5,000+ catalog is price-capped strictly at $7,995.'
+  heroSubheadline: 'Discover thousands of reliable, certified pre-owned vehicles strictly priced between $2,500 and $8,000. Comprehensive mechanical check on every vehicle.',
+  aboutText: 'Autoplex Auto Group was founded with a single mission: to make dependable, safe transportation accessible to every driver without the burden of overwhelming auto debt. Every vehicle in our 5,000+ catalog is price-capped strictly between $2,500 and $8,000.'
 };
 
 export const INITIAL_ACTIVITY_LOGS: ActivityLog[] = [

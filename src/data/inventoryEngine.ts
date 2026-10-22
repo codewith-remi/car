@@ -70,88 +70,88 @@ interface ModelSpec {
 
 const VEHICLE_CATALOG_TEMPLATES: ModelSpec[] = [
   // Toyota
-  { make: 'Toyota', model: 'Camry', trims: ['LE', 'SE', 'XLE'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.5L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 25, mpgHwy: 35, basePrice: 4800 },
-  { make: 'Toyota', model: 'Corolla', trims: ['CE', 'LE', 'S'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 37, basePrice: 4200 },
-  { make: 'Toyota', model: 'Yaris', trims: ['Base', 'Core', 'S'], bodyStyle: 'Hatchback', engines: ['1.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 30, mpgHwy: 36, basePrice: 3400 },
-  { make: 'Toyota', model: 'Matrix', trims: ['Base', 'XR', 'XRS'], bodyStyle: 'Wagon', engines: ['1.8L 4-Cylinder', '2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 32, basePrice: 3900 },
-  { make: 'Toyota', model: 'Prius', trims: ['Two', 'Three', 'Four'], bodyStyle: 'Hatchback', engines: ['1.8L 4-Cylinder Hybrid'], drivetrains: ['FWD'], transmissions: ['CVT'], fuelTypes: ['Hybrid'], doors: 4, seats: 5, mpgCity: 51, mpgHwy: 48, basePrice: 5200 },
-  { make: 'Toyota', model: 'RAV4', trims: ['Base', 'Sport', 'Limited'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 28, basePrice: 5800 },
-  { make: 'Toyota', model: 'Tacoma', trims: ['Regular Cab', 'Access Cab'], bodyStyle: 'Pickup Truck', engines: ['2.7L 4-Cylinder'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 2, seats: 3, mpgCity: 20, mpgHwy: 25, basePrice: 6800 },
+  { make: 'Toyota', model: 'Camry', trims: ['LE', 'SE', 'XLE'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.5L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 25, mpgHwy: 35, basePrice: 5200 },
+  { make: 'Toyota', model: 'Corolla', trims: ['CE', 'LE', 'S'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 37, basePrice: 4600 },
+  { make: 'Toyota', model: 'Yaris', trims: ['Base', 'Core', 'S'], bodyStyle: 'Hatchback', engines: ['1.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 30, mpgHwy: 36, basePrice: 3600 },
+  { make: 'Toyota', model: 'Matrix', trims: ['Base', 'XR', 'XRS'], bodyStyle: 'Wagon', engines: ['1.8L 4-Cylinder', '2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 32, basePrice: 4100 },
+  { make: 'Toyota', model: 'Prius', trims: ['Two', 'Three', 'Four'], bodyStyle: 'Hatchback', engines: ['1.8L 4-Cylinder Hybrid'], drivetrains: ['FWD'], transmissions: ['CVT'], fuelTypes: ['Hybrid'], doors: 4, seats: 5, mpgCity: 51, mpgHwy: 48, basePrice: 5400 },
+  { make: 'Toyota', model: 'RAV4', trims: ['Base', 'Sport', 'Limited'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 28, basePrice: 6200 },
+  { make: 'Toyota', model: 'Tacoma', trims: ['Regular Cab', 'Access Cab'], bodyStyle: 'Pickup Truck', engines: ['2.7L 4-Cylinder'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 2, seats: 3, mpgCity: 20, mpgHwy: 25, basePrice: 6900 },
 
   // Honda
-  { make: 'Honda', model: 'Civic', trims: ['DX', 'LX', 'EX', 'Si'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 29, mpgHwy: 38, basePrice: 4400 },
-  { make: 'Honda', model: 'Accord', trims: ['LX', 'EX', 'EX-L'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 34, basePrice: 4900 },
-  { make: 'Honda', model: 'Fit', trims: ['Base', 'Sport'], bodyStyle: 'Hatchback', engines: ['1.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 35, basePrice: 3800 },
-  { make: 'Honda', model: 'CR-V', trims: ['LX', 'EX', 'EX-L'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 23, mpgHwy: 31, basePrice: 5900 },
-  { make: 'Honda', model: 'Element', trims: ['LX', 'EX'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 4, mpgCity: 20, mpgHwy: 25, basePrice: 4600 },
-  { make: 'Honda', model: 'Odyssey', trims: ['LX', 'EX', 'Touring'], bodyStyle: 'Van', engines: ['3.5L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 8, mpgCity: 18, mpgHwy: 27, basePrice: 4100 },
+  { make: 'Honda', model: 'Civic', trims: ['DX', 'LX', 'EX', 'Si'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 29, mpgHwy: 38, basePrice: 4700 },
+  { make: 'Honda', model: 'Accord', trims: ['LX', 'EX', 'EX-L'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 34, basePrice: 5300 },
+  { make: 'Honda', model: 'Fit', trims: ['Base', 'Sport'], bodyStyle: 'Hatchback', engines: ['1.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 35, basePrice: 4100 },
+  { make: 'Honda', model: 'CR-V', trims: ['LX', 'EX', 'EX-L'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 23, mpgHwy: 31, basePrice: 6100 },
+  { make: 'Honda', model: 'Element', trims: ['LX', 'EX'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 4, mpgCity: 20, mpgHwy: 25, basePrice: 4900 },
+  { make: 'Honda', model: 'Odyssey', trims: ['LX', 'EX', 'Touring'], bodyStyle: 'Van', engines: ['3.5L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 8, mpgCity: 18, mpgHwy: 27, basePrice: 4500 },
 
   // Ford
-  { make: 'Ford', model: 'Focus', trims: ['S', 'SE', 'Titanium'], bodyStyle: 'Sedan', engines: ['2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline', 'Flex Fuel'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 36, basePrice: 3200 },
-  { make: 'Ford', model: 'Fusion', trims: ['S', 'SE', 'Titanium'], bodyStyle: 'Sedan', engines: ['2.5L 4-Cylinder', '1.5L EcoBoost', '2.0L Hybrid'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Hybrid'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 34, basePrice: 4300 },
-  { make: 'Ford', model: 'Escape', trims: ['XLS', 'XLT', 'Limited'], bodyStyle: 'SUV', engines: ['2.5L 4-Cylinder', '3.0L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 21, mpgHwy: 28, basePrice: 4600 },
-  { make: 'Ford', model: 'Ranger', trims: ['XL', 'XLT', 'Sport'], bodyStyle: 'Pickup Truck', engines: ['2.3L 4-Cylinder', '4.0L V6'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 2, seats: 3, mpgCity: 19, mpgHwy: 24, basePrice: 5400 },
-  { make: 'Ford', model: 'Fiesta', trims: ['S', 'SE', 'Titanium'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 29, mpgHwy: 39, basePrice: 2800 },
-  { make: 'Ford', model: 'Edge', trims: ['SE', 'SEL'], bodyStyle: 'SUV', engines: ['3.5L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 19, mpgHwy: 26, basePrice: 5100 },
+  { make: 'Ford', model: 'Focus', trims: ['S', 'SE', 'Titanium'], bodyStyle: 'Sedan', engines: ['2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline', 'Flex Fuel'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 36, basePrice: 3600 },
+  { make: 'Ford', model: 'Fusion', trims: ['S', 'SE', 'Titanium'], bodyStyle: 'Sedan', engines: ['2.5L 4-Cylinder', '1.5L EcoBoost', '2.0L Hybrid'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Hybrid'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 34, basePrice: 4600 },
+  { make: 'Ford', model: 'Escape', trims: ['XLS', 'XLT', 'Limited'], bodyStyle: 'SUV', engines: ['2.5L 4-Cylinder', '3.0L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 21, mpgHwy: 28, basePrice: 4900 },
+  { make: 'Ford', model: 'Ranger', trims: ['XL', 'XLT', 'Sport'], bodyStyle: 'Pickup Truck', engines: ['2.3L 4-Cylinder', '4.0L V6'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 2, seats: 3, mpgCity: 19, mpgHwy: 24, basePrice: 5800 },
+  { make: 'Ford', model: 'Fiesta', trims: ['S', 'SE', 'Titanium'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 29, mpgHwy: 39, basePrice: 3200 },
+  { make: 'Ford', model: 'Edge', trims: ['SE', 'SEL'], bodyStyle: 'SUV', engines: ['3.5L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 19, mpgHwy: 26, basePrice: 5400 },
 
   // Chevrolet
-  { make: 'Chevrolet', model: 'Cruze', trims: ['LS', 'LT', 'LTZ'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '1.4L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 38, basePrice: 3500 },
-  { make: 'Chevrolet', model: 'Malibu', trims: ['LS', 'LT', 'LTZ'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 25, mpgHwy: 36, basePrice: 4100 },
-  { make: 'Chevrolet', model: 'Impala', trims: ['LS', 'LT', 'LTZ'], bodyStyle: 'Sedan', engines: ['3.5L V6', '3.6L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Flex Fuel'], doors: 4, seats: 6, mpgCity: 19, mpgHwy: 29, basePrice: 3700 },
-  { make: 'Chevrolet', model: 'Equinox', trims: ['LS', 'LT'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 32, basePrice: 4900 },
-  { make: 'Chevrolet', model: 'Spark', trims: ['LS', '1LT'], bodyStyle: 'Hatchback', engines: ['1.2L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 4, mpgCity: 31, mpgHwy: 39, basePrice: 2600 },
-  { make: 'Chevrolet', model: 'Colorado', trims: ['WT', 'LT'], bodyStyle: 'Pickup Truck', engines: ['2.9L 4-Cylinder', '3.7L 5-Cylinder'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 24, basePrice: 6200 },
+  { make: 'Chevrolet', model: 'Cruze', trims: ['LS', 'LT', 'LTZ'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '1.4L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 38, basePrice: 3800 },
+  { make: 'Chevrolet', model: 'Malibu', trims: ['LS', 'LT', 'LTZ'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 25, mpgHwy: 36, basePrice: 4400 },
+  { make: 'Chevrolet', model: 'Impala', trims: ['LS', 'LT', 'LTZ'], bodyStyle: 'Sedan', engines: ['3.5L V6', '3.6L V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Flex Fuel'], doors: 4, seats: 6, mpgCity: 19, mpgHwy: 29, basePrice: 4100 },
+  { make: 'Chevrolet', model: 'Equinox', trims: ['LS', 'LT'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 32, basePrice: 5100 },
+  { make: 'Chevrolet', model: 'Spark', trims: ['LS', '1LT'], bodyStyle: 'Hatchback', engines: ['1.2L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 4, mpgCity: 31, mpgHwy: 39, basePrice: 2950 },
+  { make: 'Chevrolet', model: 'Colorado', trims: ['WT', 'LT'], bodyStyle: 'Pickup Truck', engines: ['2.9L 4-Cylinder', '3.7L 5-Cylinder'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 24, basePrice: 6500 },
 
   // Nissan
-  { make: 'Nissan', model: 'Altima', trims: ['2.5', '2.5 S', '2.5 SV', '3.5 SR'], bodyStyle: 'Sedan', engines: ['2.5L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD'], transmissions: ['CVT'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 27, mpgHwy: 38, basePrice: 3800 },
-  { make: 'Nissan', model: 'Sentra', trims: ['S', 'SV', 'SR'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 30, mpgHwy: 39, basePrice: 3300 },
-  { make: 'Nissan', model: 'Versa', trims: ['1.6 S', '1.6 SV', 'Note'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 31, mpgHwy: 40, basePrice: 2400 },
-  { make: 'Nissan', model: 'Rogue', trims: ['S', 'SV', 'SL'], bodyStyle: 'SUV', engines: ['2.5L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['CVT'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 33, basePrice: 4900 },
-  { make: 'Nissan', model: 'Frontier', trims: ['King Cab XE', 'Crew Cab SE'], bodyStyle: 'Pickup Truck', engines: ['2.5L 4-Cylinder', '4.0L V6'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 17, mpgHwy: 22, basePrice: 6400 },
+  { make: 'Nissan', model: 'Altima', trims: ['2.5', '2.5 S', '2.5 SV', '3.5 SR'], bodyStyle: 'Sedan', engines: ['2.5L 4-Cylinder', '3.5L V6'], drivetrains: ['FWD'], transmissions: ['CVT'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 27, mpgHwy: 38, basePrice: 4200 },
+  { make: 'Nissan', model: 'Sentra', trims: ['S', 'SV', 'SR'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 30, mpgHwy: 39, basePrice: 3700 },
+  { make: 'Nissan', model: 'Versa', trims: ['1.6 S', '1.6 SV', 'Note'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 31, mpgHwy: 40, basePrice: 2850 },
+  { make: 'Nissan', model: 'Rogue', trims: ['S', 'SV', 'SL'], bodyStyle: 'SUV', engines: ['2.5L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['CVT'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 33, basePrice: 5200 },
+  { make: 'Nissan', model: 'Frontier', trims: ['King Cab XE', 'Crew Cab SE'], bodyStyle: 'Pickup Truck', engines: ['2.5L 4-Cylinder', '4.0L V6'], drivetrains: ['RWD', '4WD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 17, mpgHwy: 22, basePrice: 6700 },
 
   // Hyundai
-  { make: 'Hyundai', model: 'Elantra', trims: ['GLS', 'Limited', 'SE'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 38, basePrice: 3600 },
-  { make: 'Hyundai', model: 'Sonata', trims: ['GLS', 'SE', 'Limited'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Hybrid'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 35, basePrice: 4200 },
-  { make: 'Hyundai', model: 'Accent', trims: ['GLS', 'GS', 'SE'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 27, mpgHwy: 37, basePrice: 2700 },
-  { make: 'Hyundai', model: 'Santa Fe', trims: ['GLS', 'Limited'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder', '3.3L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 27, basePrice: 5100 },
-  { make: 'Hyundai', model: 'Tucson', trims: ['GL', 'GLS', 'Limited'], bodyStyle: 'SUV', engines: ['2.0L 4-Cylinder', '2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 31, basePrice: 4700 },
+  { make: 'Hyundai', model: 'Elantra', trims: ['GLS', 'Limited', 'SE'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 38, basePrice: 3950 },
+  { make: 'Hyundai', model: 'Sonata', trims: ['GLS', 'SE', 'Limited'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Hybrid'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 35, basePrice: 4500 },
+  { make: 'Hyundai', model: 'Accent', trims: ['GLS', 'GS', 'SE'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 27, mpgHwy: 37, basePrice: 2950 },
+  { make: 'Hyundai', model: 'Santa Fe', trims: ['GLS', 'Limited'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder', '3.3L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 27, basePrice: 5300 },
+  { make: 'Hyundai', model: 'Tucson', trims: ['GL', 'GLS', 'Limited'], bodyStyle: 'SUV', engines: ['2.0L 4-Cylinder', '2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 31, basePrice: 4950 },
 
   // Kia
-  { make: 'Kia', model: 'Soul', trims: ['Base', '+ (Plus)', '! (Exclaim)'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 30, basePrice: 3900 },
-  { make: 'Kia', model: 'Forte', trims: ['LX', 'EX', 'SX'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 37, basePrice: 3400 },
-  { make: 'Kia', model: 'Optima', trims: ['LX', 'EX', 'SX'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 35, basePrice: 4300 },
-  { make: 'Kia', model: 'Sportage', trims: ['LX', 'EX'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 21, mpgHwy: 28, basePrice: 4900 },
-  { make: 'Kia', model: 'Rio', trims: ['LX', 'EX'], bodyStyle: 'Sedan', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 37, basePrice: 2900 },
+  { make: 'Kia', model: 'Soul', trims: ['Base', '+ (Plus)', '! (Exclaim)'], bodyStyle: 'Hatchback', engines: ['1.6L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 30, basePrice: 4200 },
+  { make: 'Kia', model: 'Forte', trims: ['LX', 'EX', 'SX'], bodyStyle: 'Sedan', engines: ['1.8L 4-Cylinder', '2.0L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 37, basePrice: 3800 },
+  { make: 'Kia', model: 'Optima', trims: ['LX', 'EX', 'SX'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 35, basePrice: 4600 },
+  { make: 'Kia', model: 'Sportage', trims: ['LX', 'EX'], bodyStyle: 'SUV', engines: ['2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 21, mpgHwy: 28, basePrice: 5200 },
+  { make: 'Kia', model: 'Rio', trims: ['LX', 'EX'], bodyStyle: 'Sedan', engines: ['1.6L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 37, basePrice: 3100 },
 
   // Volkswagen
-  { make: 'Volkswagen', model: 'Jetta', trims: ['S', 'SE', 'SEL', 'TDI'], bodyStyle: 'Sedan', engines: ['2.0L 4-Cylinder', '2.5L 5-Cylinder', '2.0L Turbo Diesel'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline', 'Diesel'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 34, basePrice: 3900 },
-  { make: 'Volkswagen', model: 'Golf', trims: ['2.5L', 'TDI', 'GTI'], bodyStyle: 'Hatchback', engines: ['2.5L 5-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 33, basePrice: 4400 },
-  { make: 'Volkswagen', model: 'Passat', trims: ['S', 'SE', 'SEL'], bodyStyle: 'Sedan', engines: ['2.5L 5-Cylinder', '1.8L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 32, basePrice: 4700 },
+  { make: 'Volkswagen', model: 'Jetta', trims: ['S', 'SE', 'SEL', 'TDI'], bodyStyle: 'Sedan', engines: ['2.0L 4-Cylinder', '2.5L 5-Cylinder', '2.0L Turbo Diesel'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline', 'Diesel'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 34, basePrice: 4300 },
+  { make: 'Volkswagen', model: 'Golf', trims: ['2.5L', 'TDI', 'GTI'], bodyStyle: 'Hatchback', engines: ['2.5L 5-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 33, basePrice: 4700 },
+  { make: 'Volkswagen', model: 'Passat', trims: ['S', 'SE', 'SEL'], bodyStyle: 'Sedan', engines: ['2.5L 5-Cylinder', '1.8L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 32, basePrice: 4950 },
 
   // Mazda
-  { make: 'Mazda', model: 'Mazda3', trims: ['i Sport', 'i Touring', 's Grand Touring'], bodyStyle: 'Sedan', engines: ['2.0L 4-Cylinder', '2.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 39, basePrice: 4100 },
-  { make: 'Mazda', model: 'Mazda6', trims: ['Sport', 'Touring', 'Grand Touring'], bodyStyle: 'Sedan', engines: ['2.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 38, basePrice: 4600 },
-  { make: 'Mazda', model: 'CX-7', trims: ['i SV', 'i Sport', 's Touring'], bodyStyle: 'SUV', engines: ['2.5L 4-Cylinder', '2.3L Turbo'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 28, basePrice: 4300 },
+  { make: 'Mazda', model: 'Mazda3', trims: ['i Sport', 'i Touring', 's Grand Touring'], bodyStyle: 'Sedan', engines: ['2.0L 4-Cylinder', '2.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 28, mpgHwy: 39, basePrice: 4400 },
+  { make: 'Mazda', model: 'Mazda6', trims: ['Sport', 'Touring', 'Grand Touring'], bodyStyle: 'Sedan', engines: ['2.5L 4-Cylinder'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 38, basePrice: 4900 },
+  { make: 'Mazda', model: 'CX-7', trims: ['i SV', 'i Sport', 's Touring'], bodyStyle: 'SUV', engines: ['2.5L 4-Cylinder', '2.3L Turbo'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 28, basePrice: 4600 },
 
   // Subaru
-  { make: 'Subaru', model: 'Outback', trims: ['2.5i', '2.5i Premium', '2.5i Limited'], bodyStyle: 'Wagon', engines: ['2.5L Boxer 4-Cylinder'], drivetrains: ['AWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 30, basePrice: 5300 },
-  { make: 'Subaru', model: 'Forester', trims: ['2.5X', '2.5X Premium', '2.5XT'], bodyStyle: 'SUV', engines: ['2.5L Boxer 4-Cylinder'], drivetrains: ['AWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 27, basePrice: 5100 },
-  { make: 'Subaru', model: 'Impreza', trims: ['2.0i', '2.0i Premium'], bodyStyle: 'Sedan', engines: ['2.0L Boxer 4-Cylinder'], drivetrains: ['AWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 27, mpgHwy: 36, basePrice: 4600 },
+  { make: 'Subaru', model: 'Outback', trims: ['2.5i', '2.5i Premium', '2.5i Limited'], bodyStyle: 'Wagon', engines: ['2.5L Boxer 4-Cylinder'], drivetrains: ['AWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 24, mpgHwy: 30, basePrice: 5600 },
+  { make: 'Subaru', model: 'Forester', trims: ['2.5X', '2.5X Premium', '2.5XT'], bodyStyle: 'SUV', engines: ['2.5L Boxer 4-Cylinder'], drivetrains: ['AWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 27, basePrice: 5400 },
+  { make: 'Subaru', model: 'Impreza', trims: ['2.0i', '2.0i Premium'], bodyStyle: 'Sedan', engines: ['2.0L Boxer 4-Cylinder'], drivetrains: ['AWD'], transmissions: ['CVT', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 27, mpgHwy: 36, basePrice: 4800 },
 
   // Buick & Domestic Value
-  { make: 'Buick', model: 'LaCrosse', trims: ['CX', 'CXL', 'CXS'], bodyStyle: 'Sedan', engines: ['3.0L V6', '3.6L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 27, basePrice: 4300 },
-  { make: 'Buick', model: 'Lucerne', trims: ['CX', 'CXL'], bodyStyle: 'Sedan', engines: ['3.9L V6', '4.6L V8'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 6, mpgCity: 17, mpgHwy: 26, basePrice: 3800 },
-  { make: 'Buick', model: 'Regal', trims: ['Base', 'Premium I'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 31, basePrice: 4900 },
+  { make: 'Buick', model: 'LaCrosse', trims: ['CX', 'CXL', 'CXS'], bodyStyle: 'Sedan', engines: ['3.0L V6', '3.6L V6'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 27, basePrice: 4600 },
+  { make: 'Buick', model: 'Lucerne', trims: ['CX', 'CXL'], bodyStyle: 'Sedan', engines: ['3.9L V6', '4.6L V8'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 6, mpgCity: 17, mpgHwy: 26, basePrice: 4100 },
+  { make: 'Buick', model: 'Regal', trims: ['Base', 'Premium I'], bodyStyle: 'Sedan', engines: ['2.4L 4-Cylinder', '2.0L Turbo'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 31, basePrice: 5100 },
 
   // Luxury Pre-Owned (<$8,000)
-  { make: 'BMW', model: '3 Series (328i)', trims: ['Base', 'Sport'], bodyStyle: 'Sedan', engines: ['3.0L Inline-6'], drivetrains: ['RWD', 'AWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 28, basePrice: 5700 },
-  { make: 'Mercedes-Benz', model: 'C-Class (C300)', trims: ['Sport', 'Luxury'], bodyStyle: 'Sedan', engines: ['3.0L V6'], drivetrains: ['RWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 26, basePrice: 5900 },
-  { make: 'Audi', model: 'A4', trims: ['2.0T Premium', '2.0T Premium Plus'], bodyStyle: 'Sedan', engines: ['2.0L Turbocharged 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 30, basePrice: 5600 },
-  { make: 'Volvo', model: 'S60', trims: ['2.5T', 'T5'], bodyStyle: 'Sedan', engines: ['2.5L Turbo 5-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 30, basePrice: 4700 },
+  { make: 'BMW', model: '3 Series (328i)', trims: ['Base', 'Sport'], bodyStyle: 'Sedan', engines: ['3.0L Inline-6'], drivetrains: ['RWD', 'AWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 28, basePrice: 5900 },
+  { make: 'Mercedes-Benz', model: 'C-Class (C300)', trims: ['Sport', 'Luxury'], bodyStyle: 'Sedan', engines: ['3.0L V6'], drivetrains: ['RWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 18, mpgHwy: 26, basePrice: 6200 },
+  { make: 'Audi', model: 'A4', trims: ['2.0T Premium', '2.0T Premium Plus'], bodyStyle: 'Sedan', engines: ['2.0L Turbocharged 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 22, mpgHwy: 30, basePrice: 5800 },
+  { make: 'Volvo', model: 'S60', trims: ['2.5T', 'T5'], bodyStyle: 'Sedan', engines: ['2.5L Turbo 5-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 20, mpgHwy: 30, basePrice: 4950 },
 
-  // Budget entry (<$3,000)
-  { make: 'Dodge', model: 'Grand Caravan', trims: ['SE', 'SXT'], bodyStyle: 'Van', engines: ['3.3L V6', '3.6L Pentastar V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Flex Fuel'], doors: 4, seats: 7, mpgCity: 17, mpgHwy: 25, basePrice: 2800 },
-  { make: 'Pontiac', model: 'Vibe', trims: ['Base', 'GT'], bodyStyle: 'Hatchback', engines: ['1.8L 4-Cylinder', '2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 33, basePrice: 2900 }
+  // Budget entry ($2,500+)
+  { make: 'Dodge', model: 'Grand Caravan', trims: ['SE', 'SXT'], bodyStyle: 'Van', engines: ['3.3L V6', '3.6L Pentastar V6'], drivetrains: ['FWD'], transmissions: ['Automatic'], fuelTypes: ['Gasoline', 'Flex Fuel'], doors: 4, seats: 7, mpgCity: 17, mpgHwy: 25, basePrice: 3200 },
+  { make: 'Pontiac', model: 'Vibe', trims: ['Base', 'GT'], bodyStyle: 'Hatchback', engines: ['1.8L 4-Cylinder', '2.4L 4-Cylinder'], drivetrains: ['FWD', 'AWD'], transmissions: ['Automatic', 'Manual'], fuelTypes: ['Gasoline'], doors: 4, seats: 5, mpgCity: 26, mpgHwy: 33, basePrice: 3300 }
 ];
 
 const EXTERIOR_COLORS = [
@@ -244,28 +244,27 @@ export function generateCatalog(): Vehicle[] {
     const idNumber = 10001 + i;
     const id = `APX-${idNumber}`;
 
-    // Year range from 2004 to 2017
-    const yearOffset = Math.floor(pseudoRandom(seed * 7) * 14);
-    const year = 2004 + yearOffset;
+    // Year range from 2005 to 2017
+    const yearOffset = Math.floor(pseudoRandom(seed * 7) * 13);
+    const year = 2005 + yearOffset;
 
-    // Mileage between 48,000 and 178,000 miles
-    const mileageBase = 52000 + (2018 - year) * 6500;
-    const mileageJitter = Math.floor(pseudoRandom(seed * 11) * 32000) - 15000;
-    const mileage = Math.max(38000, Math.min(185000, mileageBase + mileageJitter));
+    // Mileage between 45,000 and 165,000 miles
+    const mileageBase = 52000 + (2018 - year) * 5800;
+    const mileageJitter = Math.floor(pseudoRandom(seed * 11) * 28000) - 14000;
+    const mileage = Math.max(38000, Math.min(175000, mileageBase + mileageJitter));
 
-    // Price must STRICTLY be < $8,000.
-    // Base formula depending on template, year, and mileage:
-    let calculatedPrice = template.basePrice + (year - 2008) * 260 - Math.floor(mileage / 10000) * 120;
-    const priceJitter = Math.floor(pseudoRandom(seed * 13) * 600) - 300;
+    // Price must STRICTLY be >= $2,500 and <= $8,000.
+    let calculatedPrice = template.basePrice + (year - 2009) * 240 - Math.floor(mileage / 10000) * 110;
+    const priceJitter = Math.floor(pseudoRandom(seed * 13) * 500) - 250;
     calculatedPrice = calculatedPrice + priceJitter;
 
-    // Strict ceiling and floor enforcement: $1,450 to $7,950
-    let price = Math.round(Math.max(1450, Math.min(7950, calculatedPrice)) / 50) * 50 - 5;
+    // Strict ceiling and floor enforcement: $2,500 to $7,990
+    let price = Math.round(Math.max(2500, Math.min(7990, calculatedPrice)) / 50) * 50 - 5;
     if (price >= 8000) {
-      price = 7950;
+      price = 7990;
     }
-    if (price < 1200) {
-      price = 1495;
+    if (price < 2500) {
+      price = 2500;
     }
 
     // Trim
@@ -290,10 +289,10 @@ export function generateCatalog(): Vehicle[] {
     if (statusRoll > 0.96) status = 'Sold';
     else if (statusRoll > 0.91) status = 'Reserved';
 
-    // Featured listings (first 24 cars and every 50th)
+    // Featured listings
     const featured = i < 18 || i % 75 === 0;
 
-    // Generate unique VIN (clearly identifiable & valid format)
+    // Generate unique VIN
     let vinCode = '';
     for (let c = 0; c < 8; c++) {
       vinCode += VIN_CHARACTERS[Math.floor(pseudoRandom(seed * (c + 60)) * VIN_CHARACTERS.length)];
@@ -323,7 +322,7 @@ export function generateCatalog(): Vehicle[] {
       HERO_SHOWROOM
     ];
 
-    const description = `Autoplex Verified ${year} ${template.make} ${template.model} ${trim}. Fully inspected by our certified automotive technicians. Features smooth ${engine} paired with ${transmission} transmission. Finished in stunning ${exteriorColor} over clean ${interiorColor}. Priced strictly within our under-$8,000 guarantee. Clean title with complete vehicle readiness certification.`;
+    const description = `Autoplex Verified ${year} ${template.make} ${template.model} ${trim}. Fully inspected by our certified automotive technicians. Features smooth ${engine} paired with ${transmission} transmission. Finished in stunning ${exteriorColor} over clean ${interiorColor}. Certified within our strict $2,500 – $8,000 price guarantee. Clean title with complete vehicle readiness certification.`;
 
     const createdAt = new Date(Date.now() - (i * 2.5 * 3600000)).toISOString();
 
@@ -402,6 +401,17 @@ export function getFullInventory(): Vehicle[] {
           return v;
         });
       }
+
+      // Ensure every returned vehicle strictly satisfies $2,500 <= price <= $8,000
+      merged = merged.map(v => {
+        if (v.price < 2500) {
+          return { ...v, price: 2500 };
+        }
+        if (v.price > 8000) {
+          return { ...v, price: 7990 };
+        }
+        return v;
+      });
 
       return merged;
     } catch (e) {

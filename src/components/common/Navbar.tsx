@@ -8,9 +8,7 @@ import {
   Menu, 
   X, 
   Search, 
-  ShieldCheck, 
-  Phone,
-  SlidersHorizontal
+  Phone
 } from 'lucide-react';
 import { SiteSettings } from '../../types/vehicle';
 
@@ -23,7 +21,6 @@ interface NavbarProps {
   settings: SiteSettings;
   isLoggedIn: boolean;
   customerName?: string;
-  isAdminLoggedIn: boolean;
   onOpenAuth: () => void;
 }
 
@@ -36,7 +33,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   settings,
   isLoggedIn,
   customerName,
-  isAdminLoggedIn,
   onOpenAuth
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,19 +52,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-500"></span>
               <span className="font-medium text-slate-100">{settings.announcementText}</span>
             </div>
-            <div className="hidden sm:flex items-center gap-6 text-slate-400 shrink-0">
+            <div className="hidden sm:flex items-center gap-4 text-slate-400 shrink-0">
               <a href={`tel:${settings.supportPhone}`} className="hover:text-white transition-colors flex items-center gap-1.5">
                 <Phone className="w-3.5 h-3.5 text-blue-400" />
                 <span>{settings.supportPhone}</span>
               </a>
-              <span className="text-slate-700">|</span>
-              <button 
-                onClick={() => handleNavClick('admin')} 
-                className="hover:text-blue-300 transition-colors cursor-pointer text-xs flex items-center gap-1"
-              >
-                <span>Staff Portal</span>
-                {isAdminLoggedIn && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>}
-              </button>
             </div>
           </div>
         </div>
@@ -105,22 +93,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               Browse 5,000+ Cars
             </button>
             <button
-              onClick={() => handleNavClick('browse', { maxPrice: 3000 })}
+              onClick={() => handleNavClick('browse', { minPrice: 2500, maxPrice: 4000 })}
               className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
-              Under $3,000
+              $2,500 – $4,000
             </button>
             <button
-              onClick={() => handleNavClick('browse', { maxPrice: 5000 })}
+              onClick={() => handleNavClick('browse', { minPrice: 4000, maxPrice: 6000 })}
               className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
-              Under $5,000
+              $4,000 – $6,000
             </button>
             <button
-              onClick={() => handleNavClick('browse', { maxPrice: 8000 })}
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 cursor-pointer text-amber-700"
+              onClick={() => handleNavClick('browse', { minPrice: 6000, maxPrice: 8000 })}
+              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 cursor-pointer text-blue-700"
             >
-              Under $8,000
+              $6,000 – $8,000
             </button>
             <button
               onClick={() => handleNavClick('shipping')}
@@ -224,22 +212,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               Browse 5,000+ Cars
             </button>
             <button
-              onClick={() => handleNavClick('browse', { maxPrice: 3000 })}
+              onClick={() => handleNavClick('browse', { minPrice: 2500, maxPrice: 4000 })}
               className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
-              Cars Under $3,000
+              Cars $2,500 – $4,000
             </button>
             <button
-              onClick={() => handleNavClick('browse', { maxPrice: 5000 })}
+              onClick={() => handleNavClick('browse', { minPrice: 4000, maxPrice: 6000 })}
               className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
-              Cars Under $5,000
+              Cars $4,000 – $6,000
             </button>
             <button
-              onClick={() => handleNavClick('browse', { maxPrice: 8000 })}
+              onClick={() => handleNavClick('browse', { minPrice: 6000, maxPrice: 8000 })}
               className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
-              Cars Under $8,000
+              Cars $6,000 – $8,000
             </button>
             <button
               onClick={() => handleNavClick('shipping')}
@@ -265,13 +253,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-slate-800 hover:bg-slate-50"
             >
               Contact Dealership
-            </button>
-            <button
-              onClick={() => handleNavClick('admin')}
-              className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 flex items-center justify-between"
-            >
-              <span>Staff Management Portal</span>
-              <span className="text-[11px] font-semibold uppercase">Admin</span>
             </button>
           </div>
 

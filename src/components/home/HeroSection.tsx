@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Search, SlidersHorizontal, CheckCircle, Shield, ArrowRight } from 'lucide-react';
-import { BodyStyle, TransmissionType, FuelType } from '../../types/vehicle';
+import { Search, SlidersHorizontal, ArrowRight } from 'lucide-react';
 
 interface HeroSectionProps {
   onSearch: (params: any) => void;
@@ -10,6 +9,7 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMakes }) => {
   const [make, setMake] = useState('All');
   const [bodyStyle, setBodyStyle] = useState<string>('All');
+  const [minPrice, setMinPrice] = useState<number>(2500);
   const [maxPrice, setMaxPrice] = useState<number>(8000);
   const [minYear, setMinYear] = useState<string>('All');
   const [transmission, setTransmission] = useState<string>('All');
@@ -19,6 +19,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
     onSearch({
       make: make === 'All' ? undefined : make,
       bodyStyle: bodyStyle === 'All' ? undefined : bodyStyle,
+      minPrice: Number(minPrice),
       maxPrice: Number(maxPrice),
       minYear: minYear === 'All' ? undefined : Number(minYear),
       transmission: transmission === 'All' ? undefined : transmission,
@@ -46,7 +47,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-blue-400 bg-blue-950/80 border border-blue-800/60 px-3 py-1 rounded-md">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-              Strict Under-$8,000 Vehicle Marketplace
+              Strict $2,500 – $8,000 Vehicle Marketplace
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display text-white leading-[1.1] text-balance">
@@ -57,13 +58,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-              Discover thousands of affordable, certified pre-owned vehicles with prices strictly under $8,000. Find the right car for your budget and drive toward your next journey.
+              Discover thousands of affordable, certified pre-owned vehicles with prices strictly between $2,500 and $8,000. Find the right car for your budget and drive toward your next journey.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
-                onClick={() => onSearch({ page: 1 })}
+                onClick={() => onSearch({ page: 1, minPrice: 2500, maxPrice: 8000 })}
                 className="px-6 py-3 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-all duration-150 shadow-md flex items-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span>Explore All 5,000+ Cars</span>
@@ -71,10 +72,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
               </button>
 
               <button
-                onClick={() => onSearch({ maxPrice: 5000, page: 1 })}
+                onClick={() => onSearch({ minPrice: 2500, maxPrice: 5000, page: 1 })}
                 className="px-6 py-3 text-sm font-semibold text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-lg transition-all duration-150 cursor-pointer whitespace-nowrap"
               >
-                Browse Under $5,000
+                Browse $2,500 – $5,000
               </button>
             </div>
 
@@ -88,7 +89,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
               </div>
               <div>
                 <span className="text-2xl font-bold font-display text-emerald-400 tabular-nums block">
-                  &lt; $8,000
+                  $2.5k – $8k
                 </span>
                 <span className="text-xs text-slate-400">Price Guarantee</span>
               </div>
@@ -110,7 +111,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
                     Find Your Vehicle
                   </h2>
                   <p className="text-xs text-slate-500">
-                    Filter thousands of cars under $8,000 in seconds
+                    Filter thousands of cars between $2,500 and $8,000
                   </p>
                 </div>
                 <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
@@ -185,7 +186,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
                     onChange={(e) => setMinYear(e.target.value)}
                     className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white text-slate-900"
                   >
-                    <option value="All">Any Year (2004+)</option>
+                    <option value="All">Any Year (2005+)</option>
                     <option value="2008">2008 or newer</option>
                     <option value="2010">2010 or newer</option>
                     <option value="2012">2012 or newer</option>
@@ -193,17 +194,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
                   </select>
                 </div>
 
-                {/* Maximum Price Range Slider (Enforces strictly <= $8,000) */}
+                {/* Maximum Price Range Slider (Enforces strictly $2,500 <= price <= $8,000) */}
                 <div>
                   <div className="flex items-center justify-between text-xs font-semibold text-slate-700 mb-1">
-                    <span>Maximum Budget</span>
+                    <span>Price Range</span>
                     <span className="text-blue-600 font-bold tabular-nums">
-                      ${Number(maxPrice).toLocaleString()}
+                      ${Number(minPrice).toLocaleString()} – ${Number(maxPrice).toLocaleString()}
                     </span>
                   </div>
                   <input
                     type="range"
-                    min="1500"
+                    min="2500"
                     max="8000"
                     step="250"
                     value={maxPrice}
@@ -211,9 +212,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, availableMak
                     className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                   />
                   <div className="flex justify-between text-[11px] text-slate-400 mt-1">
-                    <span>$1,500</span>
-                    <span>$3,000</span>
-                    <span>$5,000</span>
+                    <span>$2,500 Min</span>
+                    <span>$4,000</span>
+                    <span>$6,000</span>
                     <span className="font-semibold text-slate-600">$8,000 Max</span>
                   </div>
                 </div>

@@ -1,48 +1,52 @@
 import React from 'react';
-import { ArrowRight, DollarSign, Sparkles, Tag, Shield } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface BudgetSectionProps {
-  onSelectBudget: (maxPrice: number) => void;
+  onSelectBudget: (minPrice: number, maxPrice: number) => void;
   stats: {
-    under2k: number;
-    under3k: number;
-    under5k: number;
-    under8k: number;
+    tier2500to3500: number;
+    tier3500to5000: number;
+    tier5000to6500: number;
+    tier6500to8000: number;
   };
 }
 
 export const BudgetSection: React.FC<BudgetSectionProps> = ({ onSelectBudget, stats }) => {
   const TIERS = [
     {
-      title: 'Under $2,000',
-      maxPrice: 2000,
-      count: stats.under2k,
-      description: 'Maximum thrift. Great for first-time drivers, college students, or basic work commuters.',
+      title: '$2,500 – $3,500',
+      minPrice: 2500,
+      maxPrice: 3500,
+      count: stats.tier2500to3500,
+      description: 'Maximum thrift and entry-level value. Reliable compact cars, first-time driver options, and daily commuters.',
       highlight: 'Extreme Affordability',
       badgeColor: 'border-slate-300 bg-white text-slate-800'
     },
     {
-      title: 'Under $3,000',
-      maxPrice: 3000,
-      count: stats.under3k,
-      description: 'Dependable daily runners including Chevrolet Cruzes, Ford Focuses, and high-efficiency hatchbacks.',
-      highlight: 'Smart Daily Commuters',
-      badgeColor: 'border-slate-300 bg-white text-slate-800'
-    },
-    {
-      title: 'Under $5,000',
+      title: '$3,500 – $5,000',
+      minPrice: 3500,
       maxPrice: 5000,
-      count: stats.under5k,
-      description: 'Our most popular price range. Proven Toyotas, Hondas, Nissans, and compact crossover SUVs.',
+      count: stats.tier3500to5000,
+      description: 'Our most sought-after budget bracket. Proven Toyotas, Hondas, Nissans, and high-efficiency hatchbacks.',
       highlight: 'Most Popular Range',
       badgeColor: 'border-blue-200 bg-blue-50 text-blue-800 font-semibold'
     },
     {
-      title: 'Under $8,000',
+      title: '$5,000 – $6,500',
+      minPrice: 5000,
+      maxPrice: 6500,
+      count: stats.tier5000to6500,
+      description: 'Spacious family sedans, versatile crossover SUVs, and well-maintained utility trucks.',
+      highlight: 'Family & Utility Focus',
+      badgeColor: 'border-indigo-200 bg-indigo-50 text-indigo-800 font-semibold'
+    },
+    {
+      title: '$6,500 – $8,000',
+      minPrice: 6500,
       maxPrice: 8000,
-      count: stats.under8k,
-      description: 'Top-tier certified inventory. Lower mileage, newer model years, premium trims, and luxury sedans.',
-      highlight: 'Autoplex Maximum Cap',
+      count: stats.tier6500to8000,
+      description: 'Top-tier certified pre-owned units. Newer model years, lower mileage, premium trims, and luxury sedans.',
+      highlight: 'Autoplex Cap ($8k Max)',
       badgeColor: 'border-amber-200 bg-amber-50 text-amber-900 font-semibold'
     }
   ];
@@ -58,15 +62,15 @@ export const BudgetSection: React.FC<BudgetSectionProps> = ({ onSelectBudget, st
             Shop Within Your Exact Financial Comfort Zone
           </h2>
           <p className="mt-2 text-sm text-slate-600">
-            No surprise add-ons. Every vehicle listed on Autoplex strictly adheres to our under-$8,000 guarantee.
+            No surprise add-ons. Every vehicle listed on Autoplex strictly adheres to our $2,500 – $8,000 price policy.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {TIERS.map((tier) => (
             <div
-              key={tier.maxPrice}
-              onClick={() => onSelectBudget(tier.maxPrice)}
+              key={tier.title}
+              onClick={() => onSelectBudget(tier.minPrice, tier.maxPrice)}
               className="group bg-slate-50 hover:bg-white rounded-xl border border-slate-200 hover:border-blue-600 p-6 hover:shadow-lg transition-all duration-200 cursor-pointer flex flex-col justify-between"
             >
               <div>
@@ -89,7 +93,7 @@ export const BudgetSection: React.FC<BudgetSectionProps> = ({ onSelectBudget, st
               </div>
 
               <div className="mt-6 pt-4 border-t border-slate-200/80 flex items-center justify-between text-xs font-semibold text-blue-600 group-hover:text-blue-700">
-                <span>View All {tier.title}</span>
+                <span>View {tier.title}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>

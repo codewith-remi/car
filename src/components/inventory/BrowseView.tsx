@@ -8,8 +8,7 @@ import {
   ChevronLeft, 
   ChevronRight, 
   X, 
-  Filter,
-  Check
+  Filter
 } from 'lucide-react';
 import { Vehicle, VehicleFilterParams, BodyStyle, TransmissionType, FuelType, DrivetrainType, VehicleCondition } from '../../types/vehicle';
 import { queryVehicles, getFilterFacets } from '../../services/inventoryService';
@@ -34,13 +33,13 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
   onViewDetails,
   onQuickInquire
 }) => {
-  // Filter States
+  // Filter States with strict bounds: min $2,500, max $8,000
   const [query, setQuery] = useState(initialParams?.query || '');
   const [make, setMake] = useState<string>(initialParams?.make || 'All');
   const [bodyStyle, setBodyStyle] = useState<string>(initialParams?.bodyStyle || 'All');
-  const [minPrice, setMinPrice] = useState<number>(initialParams?.minPrice || 0);
-  const [maxPrice, setMaxPrice] = useState<number>(initialParams?.maxPrice || 8000);
-  const [minYear, setMinYear] = useState<number>(initialParams?.minYear || 2004);
+  const [minPrice, setMinPrice] = useState<number>(initialParams?.minPrice ? Math.max(2500, initialParams.minPrice) : 2500);
+  const [maxPrice, setMaxPrice] = useState<number>(initialParams?.maxPrice ? Math.min(8000, initialParams.maxPrice) : 8000);
+  const [minYear, setMinYear] = useState<number>(initialParams?.minYear || 2005);
   const [maxYear, setMaxYear] = useState<number>(initialParams?.maxYear || 2018);
   const [maxMileage, setMaxMileage] = useState<number>(initialParams?.maxMileage || 200000);
   const [transmission, setTransmission] = useState<string>(initialParams?.transmission || 'All');
@@ -55,7 +54,6 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
   const [pageSize, setPageSize] = useState<number>(24);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   // Facet options
   const facets = useMemo(() => getFilterFacets(), []);
@@ -65,8 +63,8 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
     if (initialParams) {
       if (initialParams.make) setMake(initialParams.make);
       if (initialParams.bodyStyle) setBodyStyle(initialParams.bodyStyle);
-      if (typeof initialParams.maxPrice === 'number') setMaxPrice(initialParams.maxPrice);
-      if (typeof initialParams.minPrice === 'number') setMinPrice(initialParams.minPrice);
+      if (typeof initialParams.maxPrice === 'number') setMaxPrice(Math.min(8000, initialParams.maxPrice));
+      if (typeof initialParams.minPrice === 'number') setMinPrice(Math.max(2500, initialParams.minPrice));
       if (initialParams.query) setQuery(initialParams.query);
       setPage(1);
     }
@@ -78,7 +76,7 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
       query,
       make: make === 'All' ? undefined : make,
       bodyStyle: bodyStyle === 'All' ? undefined : (bodyStyle as BodyStyle),
-      minPrice,
+      minPrice: Math.max(2500, minPrice),
       maxPrice: Math.min(8000, maxPrice),
       minYear,
       maxYear,
@@ -115,9 +113,9 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
     setQuery('');
     setMake('All');
     setBodyStyle('All');
-    setMinPrice(0);
+    setMinPrice(2500);
     setMaxPrice(8000);
-    setMinYear(2004);
+    setMinYear(2005);
     setMaxYear(2018);
     setMaxMileage(200000);
     setTransmission('All');
@@ -134,8 +132,8 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
   if (make !== 'All') activeChips.push({ label: `Make: ${make}`, clear: () => setMake('All') });
   if (bodyStyle !== 'All') activeChips.push({ label: `Style: ${bodyStyle}`, clear: () => setBodyStyle('All') });
   if (maxPrice < 8000) activeChips.push({ label: `Max $${maxPrice.toLocaleString()}`, clear: () => setMaxPrice(8000) });
-  if (minPrice > 0) activeChips.push({ label: `Min $${minPrice.toLocaleString()}`, clear: () => setMinPrice(0) });
-  if (minYear > 2004) activeChips.push({ label: `Year ≥ ${minYear}`, clear: () => setMinYear(2004) });
+  if (minPrice > 2500) activeChips.push({ label: `Min $${minPrice.toLocaleString()}`, clear: () => setMinPrice(2500) });
+  if (minYear > 2005) activeChips.push({ label: `Year ≥ ${minYear}`, clear: () => setMinYear(2005) });
   if (maxMileage < 200000) activeChips.push({ label: `Mileage ≤ ${maxMileage.toLocaleString()} mi`, clear: () => setMaxMileage(200000) });
   if (transmission !== 'All') activeChips.push({ label: `Trans: ${transmission}`, clear: () => setTransmission('All') });
   if (fuelType !== 'All') activeChips.push({ label: `Fuel: ${fuelType}`, clear: () => setFuelType('All') });
@@ -173,56 +171,56 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
       {/* Quick Budget Shortcuts */}
       <div>
         <label className="block text-xs font-semibold text-slate-700 mb-1.5 uppercase tracking-wider">
-          Budget Range
+          Budget Range ($2,500 – $8,000)
         </label>
         <div className="grid grid-cols-2 gap-1.5 mb-3">
           <button
             type="button"
-            onClick={() => setQuickBudget(0, 2000)}
+            onClick={() => setQuickBudget(2500, 3500)}
             className={`px-2 py-1.5 text-xs rounded border text-left cursor-pointer transition-colors ${
-              minPrice === 0 && maxPrice === 2000 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+              minPrice === 2500 && maxPrice === 3500 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            Under $2,000
+            $2,500 – $3,500
           </button>
           <button
             type="button"
-            onClick={() => setQuickBudget(2000, 3000)}
+            onClick={() => setQuickBudget(3500, 5000)}
             className={`px-2 py-1.5 text-xs rounded border text-left cursor-pointer transition-colors ${
-              minPrice === 2000 && maxPrice === 3000 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+              minPrice === 3500 && maxPrice === 5000 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            $2,000 – $3,000
+            $3,500 – $5,000
           </button>
           <button
             type="button"
-            onClick={() => setQuickBudget(3000, 5000)}
+            onClick={() => setQuickBudget(5000, 6500)}
             className={`px-2 py-1.5 text-xs rounded border text-left cursor-pointer transition-colors ${
-              minPrice === 3000 && maxPrice === 5000 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+              minPrice === 5000 && maxPrice === 6500 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            $3,000 – $5,000
+            $5,000 – $6,500
           </button>
           <button
             type="button"
-            onClick={() => setQuickBudget(5000, 7999)}
+            onClick={() => setQuickBudget(6500, 8000)}
             className={`px-2 py-1.5 text-xs rounded border text-left cursor-pointer transition-colors ${
-              minPrice === 5000 && maxPrice === 7999 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+              minPrice === 6500 && maxPrice === 8000 ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
             }`}
           >
-            $5,000 – $7,999
+            $6,500 – $8,000
           </button>
         </div>
 
-        {/* Max Price Range Slider */}
+        {/* Price Slider */}
         <div className="pt-1">
           <div className="flex justify-between text-xs text-slate-600 mb-1">
-            <span>Price Cap</span>
+            <span>Price Upper Bound</span>
             <span className="font-bold text-slate-900 tabular-nums">${maxPrice.toLocaleString()}</span>
           </div>
           <input
             type="range"
-            min="1500"
+            min="2500"
             max="8000"
             step="100"
             value={maxPrice}
@@ -233,7 +231,7 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
             className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
           />
           <div className="flex justify-between text-[10px] text-slate-400 mt-0.5">
-            <span>$1.5k</span>
+            <span>$2,500 Min</span>
             <span className="font-semibold text-slate-700">$8,000 Limit</span>
           </div>
         </div>
@@ -292,7 +290,7 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
           }}
           className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-slate-900"
         >
-          <option value={2004}>Any Year (2004+)</option>
+          <option value={2005}>Any Year (2005+)</option>
           <option value={2008}>2008 or newer</option>
           <option value={2010}>2010 or newer</option>
           <option value={2012}>2012 or newer</option>
@@ -433,10 +431,10 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
               <span className="text-slate-800 font-medium">Inventory Catalog</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold font-display text-slate-950 tracking-tight">
-              Browse Pre-Owned Cars Under $8,000
+              Browse Pre-Owned Cars ($2,500 – $8,000)
             </h1>
             <p className="text-xs text-slate-600 mt-1">
-              Showing <span className="font-semibold text-slate-900 tabular-nums">{queryResult.total.toLocaleString()}</span> matching vehicles in current inventory.
+              Showing <span className="font-semibold text-slate-900 tabular-nums">{queryResult.total.toLocaleString()}</span> matching vehicles strictly within $2,500 – $8,000.
             </p>
           </div>
 
@@ -553,7 +551,7 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
                   No vehicles found matching your criteria
                 </h3>
                 <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-                  Try adjusting your price ceiling, selecting a different make, or resetting your filters to browse the full catalog.
+                  Try adjusting your budget filter (minimum $2,500, maximum $8,000) or resetting your filters to browse the full catalog.
                 </p>
                 <button
                   onClick={handleResetFilters}

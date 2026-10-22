@@ -84,7 +84,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
                   ${vehicle.price.toLocaleString()}
                 </span>
                 <span className="text-[11px] text-emerald-700 font-medium">
-                  Under $8k Guarantee
+                  $2.5k – $8k Guarantee
                 </span>
               </div>
             </div>

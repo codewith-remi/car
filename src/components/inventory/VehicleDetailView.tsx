@@ -309,7 +309,7 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
                         </div>
                         <div>
                           <span className="text-slate-500 block">Pricing Compliance</span>
-                          <span className="font-medium text-emerald-700">Verified &lt; $8,000</span>
+                          <span className="font-medium text-emerald-700">Verified $2,500 – $8,000</span>
                         </div>
                       </div>
                     </div>
@@ -426,7 +426,7 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
                     ${vehicle.price.toLocaleString()}
                   </span>
                   <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                    Under $8,000
+                    $2,500 – $8,000
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-500 mt-1">
@@ -499,7 +499,7 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
                 Autoplex Price Pledge
               </span>
               <p className="text-slate-200 leading-relaxed">
-                If you ever find an Autoplex listing priced at $8,000 or above, our automated database integrity rule will immediately flag and remove it. Affordable, honest motoring is our founding promise.
+                Every Autoplex vehicle is strictly priced between $2,500 and $8,000 USD. Our automated catalog policy prevents any vehicle outside this boundary from appearing.
               </p>
             </div>
           </div>

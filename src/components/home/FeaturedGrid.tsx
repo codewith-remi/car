@@ -24,11 +24,11 @@ export const FeaturedGrid: React.FC<FeaturedGridProps> = ({
   onQuickInquire,
   onViewAll
 }) => {
-  const [activeTab, setActiveTab] = useState<'all' | 'under3k' | 'under5k' | 'suv' | 'sedan'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'tier2500to4000' | 'tier4000to6000' | 'suv' | 'sedan'>('all');
 
   const filteredVehicles = vehicles.filter(v => {
-    if (activeTab === 'under3k') return v.price < 3000;
-    if (activeTab === 'under5k') return v.price < 5000;
+    if (activeTab === 'tier2500to4000') return v.price >= 2500 && v.price <= 4000;
+    if (activeTab === 'tier4000to6000') return v.price > 4000 && v.price <= 6000;
     if (activeTab === 'suv') return v.bodyStyle === 'SUV';
     if (activeTab === 'sedan') return v.bodyStyle === 'Sedan';
     return true;
@@ -46,11 +46,11 @@ export const FeaturedGrid: React.FC<FeaturedGridProps> = ({
               <span>Certified Handpicked Inventory</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 tracking-tight">
-              Featured Deals Under $8,000
+              Featured Deals $2,500 – $8,000
             </h2>
           </div>
 
-          {/* Interactive filter tabs (functional buttons with active state) */}
+          {/* Interactive filter tabs */}
           <div className="flex items-center gap-1 p-1 bg-slate-200/80 rounded-lg overflow-x-auto">
             <button
               onClick={() => setActiveTab('all')}
@@ -63,24 +63,24 @@ export const FeaturedGrid: React.FC<FeaturedGridProps> = ({
               All Featured
             </button>
             <button
-              onClick={() => setActiveTab('under3k')}
+              onClick={() => setActiveTab('tier2500to4000')}
               className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${
-                activeTab === 'under3k'
+                activeTab === 'tier2500to4000'
                   ? 'bg-white text-slate-900 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Under $3,000
+              $2,500 – $4,000
             </button>
             <button
-              onClick={() => setActiveTab('under5k')}
+              onClick={() => setActiveTab('tier4000to6000')}
               className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap cursor-pointer ${
-                activeTab === 'under5k'
+                activeTab === 'tier4000to6000'
                   ? 'bg-white text-slate-900 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Under $5,000
+              $4,000 – $6,000
             </button>
             <button
               onClick={() => setActiveTab('suv')}

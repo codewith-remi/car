@@ -24,10 +24,10 @@ export const TrustBar: React.FC = () => {
               <DollarSign className="w-5 h-5" />
             </div>
             <h3 className="text-base font-bold text-slate-900 font-display">
-              Strictly Under $8,000
+              $2,500 – $8,000 Price Guarantee
             </h3>
             <p className="mt-2 text-xs text-slate-600 leading-relaxed">
-              Every single vehicle in our 5,000+ catalog is price-capped below $8,000 USD. No bait-and-switch, no inflated dealer surcharges.
+              Every single vehicle in our 5,000+ catalog is strictly priced between $2,500 and $8,000 USD. No bait-and-switch, no inflated dealer surcharges.
             </p>
           </div>
 

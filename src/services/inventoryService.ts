@@ -18,8 +18,11 @@ export function queryVehicles(params: VehicleFilterParams = {}): QueryResult {
   const make = params.make && params.make !== 'All' ? params.make.toLowerCase() : '';
   const model = params.model && params.model !== 'All' ? params.model.toLowerCase() : '';
   const bodyStyle = params.bodyStyle && params.bodyStyle !== 'All' ? params.bodyStyle : '';
-  const minPrice = typeof params.minPrice === 'number' ? params.minPrice : 0;
+  
+  // Strict price boundaries: minimum $2,500, maximum $8,000
+  const minPrice = typeof params.minPrice === 'number' ? Math.max(2500, params.minPrice) : 2500;
   const maxPrice = typeof params.maxPrice === 'number' ? Math.min(8000, params.maxPrice) : 8000;
+  
   const minYear = typeof params.minYear === 'number' ? params.minYear : 0;
   const maxYear = typeof params.maxYear === 'number' ? params.maxYear : 3000;
   const maxMileage = typeof params.maxMileage === 'number' ? params.maxMileage : Infinity;
@@ -34,8 +37,8 @@ export function queryVehicles(params: VehicleFilterParams = {}): QueryResult {
     // Only published listings unless explicitly filtered
     if (!v.published) return false;
 
-    // Strict validation: every vehicle must be under $8,000
-    if (v.price >= 8000) return false;
+    // Strict validation: price must be between $2,500 and $8,000
+    if (v.price < 2500 || v.price > 8000) return false;
 
     if (query) {
       const match =
@@ -129,7 +132,7 @@ export function getRecentlyAdded(limit = 8): Vehicle[] {
 export function getBudgetVehicles(maxPrice: number, limit = 8): Vehicle[] {
   const all = getFullInventory();
   return all
-    .filter(v => v.price <= maxPrice && v.status === 'Available')
+    .filter(v => v.price <= maxPrice && v.price >= 2500 && v.status === 'Available')
     .slice(0, limit);
 }
 
@@ -139,10 +142,10 @@ export function getInventoryStats() {
   let available = 0;
   let reserved = 0;
   let sold = 0;
-  let under2k = 0;
-  let under3k = 0;
-  let under5k = 0;
-  let under8k = 0;
+  let tier2500to3500 = 0;
+  let tier3500to5000 = 0;
+  let tier5000to6500 = 0;
+  let tier6500to8000 = 0;
   let totalPrice = 0;
   let totalMileage = 0;
   const makeCounts: Record<string, number> = {};
@@ -153,10 +156,10 @@ export function getInventoryStats() {
     else if (v.status === 'Reserved') reserved++;
     else if (v.status === 'Sold') sold++;
 
-    if (v.price < 2000) under2k++;
-    if (v.price < 3000) under3k++;
-    if (v.price < 5000) under5k++;
-    if (v.price < 8000) under8k++;
+    if (v.price >= 2500 && v.price <= 3500) tier2500to3500++;
+    else if (v.price > 3500 && v.price <= 5000) tier3500to5000++;
+    else if (v.price > 5000 && v.price <= 6500) tier5000to6500++;
+    else if (v.price > 6500 && v.price <= 8000) tier6500to8000++;
 
     totalPrice += v.price;
     totalMileage += v.mileage;
@@ -170,10 +173,10 @@ export function getInventoryStats() {
     available,
     reserved,
     sold,
-    under2k,
-    under3k,
-    under5k,
-    under8k,
+    tier2500to3500,
+    tier3500to5000,
+    tier5000to6500,
+    tier6500to8000,
     avgPrice: Math.round(totalPrice / total),
     avgMileage: Math.round(totalMileage / total),
     makeCounts,

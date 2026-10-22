@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Car, Mail, Phone, MapPin, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Car, Mail, Phone, MapPin, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { SiteSettings } from '../../types/vehicle';
 
 interface FooterProps {
@@ -34,13 +34,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
                   AUTOPLEX AUTO GROUP
                 </span>
                 <span className="text-[10px] tracking-widest text-slate-400 uppercase font-semibold block leading-tight">
-                  Quality Vehicles Under $8,000
+                  Quality Vehicles $2,500 – $8,000
                 </span>
               </div>
             </div>
             
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              International pre-owned automotive dealership delivering high-value, inspected, and reliable second-hand cars strictly capped below $8,000 USD. Every vehicle undergoes a 120-point mechanical evaluation.
+              International pre-owned automotive dealership delivering high-value, inspected, and reliable second-hand cars strictly priced between $2,500 and $8,000 USD. Every vehicle undergoes a 120-point mechanical evaluation.
             </p>
 
             <div className="space-y-2 text-xs text-slate-300 pt-1">
@@ -67,34 +67,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
             <ul className="space-y-2 text-sm">
               <li>
                 <button 
-                  onClick={() => onNavigate('browse', { maxPrice: 2000 })}
+                  onClick={() => onNavigate('browse', { minPrice: 2500, maxPrice: 4000 })}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Cars Under $2,000
+                  Cars $2,500 – $4,000
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => onNavigate('browse', { maxPrice: 3000 })}
+                  onClick={() => onNavigate('browse', { minPrice: 4000, maxPrice: 6000 })}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Cars Under $3,000
+                  Cars $4,000 – $6,000
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => onNavigate('browse', { maxPrice: 5000 })}
+                  onClick={() => onNavigate('browse', { minPrice: 6000, maxPrice: 8000 })}
                   className="hover:text-white transition-colors cursor-pointer text-left"
                 >
-                  Cars Under $5,000
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => onNavigate('browse', { maxPrice: 8000 })}
-                  className="hover:text-white transition-colors cursor-pointer text-left"
-                >
-                  Cars Under $8,000
+                  Cars $6,000 – $8,000
                 </button>
               </li>
               <li>
@@ -163,7 +155,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
               Inventory Alerts
             </h4>
             <p className="text-xs text-slate-400">
-              Receive notifications when newly certified vehicles under $8,000 are added to our lot.
+              Receive notifications when newly certified vehicles between $2,500 and $8,000 are added to our lot.
             </p>
             {subscribed ? (
               <div className="flex items-center gap-1.5 text-xs text-emerald-400 bg-slate-900 border border-slate-800 p-2.5 rounded-lg">
@@ -189,15 +181,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
                 </button>
               </form>
             )}
-
-            <div className="pt-2">
-              <button
-                onClick={() => onNavigate('admin')}
-                className="text-xs text-slate-500 hover:text-slate-300 transition-colors"
-              >
-                Dealership Staff Console
-              </button>
-            </div>
           </div>
 
         </div>
@@ -205,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>
-            © {new Date().getFullYear()} Autoplex Auto Group. All rights reserved. Strict &lt;$8,000 price ceiling policy.
+            © {new Date().getFullYear()} Autoplex Auto Group. All rights reserved. Strict $2,500 – $8,000 price policy.
           </p>
           <div className="flex items-center gap-6">
             <button onClick={() => onNavigate('privacy')} className="hover:text-white transition-colors cursor-pointer">

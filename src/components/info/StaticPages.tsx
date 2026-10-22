@@ -78,8 +78,8 @@ export const StaticPages: React.FC<StaticPageProps> = ({
                 <span className="text-xs text-slate-600 font-medium">Distinct Vehicle Listings</span>
               </div>
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-                <span className="text-2xl font-extrabold font-display text-emerald-600 block tabular-nums">&lt; $8,000</span>
-                <span className="text-xs text-slate-600 font-medium">Guaranteed Price Ceiling</span>
+                <span className="text-2xl font-extrabold font-display text-emerald-600 block tabular-nums">$2.5k – $8k</span>
+                <span className="text-xs text-slate-600 font-medium">Guaranteed Price Range</span>
               </div>
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
                 <span className="text-2xl font-extrabold font-display text-slate-900 block tabular-nums">120-Pt</span>
@@ -222,8 +222,8 @@ export const StaticPages: React.FC<StaticPageProps> = ({
             <div className="space-y-4 pt-4 text-xs">
               {[
                 {
-                  q: 'Are all vehicles really priced strictly under $8,000 USD?',
-                  a: 'Yes, 100%. Our platform and database enforce an unyielding programmatic price ceiling. No vehicle will ever be listed above $7,995. We specialize exclusively in high-value second-hand commuter vehicles.'
+                  q: 'Are all vehicles really priced strictly between $2,500 and $8,000 USD?',
+                  a: 'Yes, 100%. Our platform and database enforce an unyielding programmatic price boundary: no vehicle is ever listed below $2,500 or above $8,000. We specialize exclusively in certified, high-value second-hand commuter vehicles.'
                 },
                 {
                   q: 'How large is your inventory?',
@@ -319,7 +319,7 @@ export const StaticPages: React.FC<StaticPageProps> = ({
             <p>Last updated: October 2026</p>
             <h3 className="text-sm font-bold text-slate-900 pt-2">1. Inventory Pricing Policy</h3>
             <p>
-              Every public listing displayed on Autoplex Auto Group is guaranteed to be strictly below $8,000 USD. Prices do not include applicable state sales tax, title transfer fees, or carrier freight unless explicitly bundled.
+              Every public listing displayed on Autoplex Auto Group is guaranteed to be strictly between $2,500 and $8,000 USD. Prices do not include applicable state sales tax, title transfer fees, or carrier freight unless explicitly bundled.
             </p>
             <h3 className="text-sm font-bold text-slate-900 pt-2">2. Purchase Inquiries</h3>
             <p>

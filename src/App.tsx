@@ -13,16 +13,13 @@ import { CompareView } from './components/comparison/CompareView';
 import { FavoritesView } from './components/favorites/FavoritesView';
 import { InquiryCartView } from './components/cart/InquiryCartView';
 import { CustomerAccountModal } from './components/account/CustomerAccountModal';
-import { AdminPortal } from './components/admin/AdminPortal';
 import { StaticPages } from './components/info/StaticPages';
 
 import { 
   Vehicle, 
   VehicleFilterParams, 
   CustomerUser, 
-  AdminUser, 
-  PurchaseInquiry,
-  BodyStyle 
+  PurchaseInquiry
 } from './types/vehicle';
 import { 
   getFeaturedVehicles, 
@@ -42,19 +39,17 @@ import {
   removeFromInquiryCart, 
   clearInquiryCart, 
   getCurrentCustomer, 
-  getCurrentAdmin, 
   getSiteSettings 
 } from './services/storeService';
 
 export default function App() {
-  // Navigation & View state
-  const [currentView, setCurrentView] = useState<'home' | 'browse' | 'vehicle-detail' | 'favorites' | 'compare' | 'cart' | 'admin' | 'about' | 'contact' | 'faqs' | 'shipping' | 'privacy' | 'terms'>('home');
+  // Navigation & View state (Staff portal completely removed)
+  const [currentView, setCurrentView] = useState<'home' | 'browse' | 'vehicle-detail' | 'favorites' | 'compare' | 'cart' | 'about' | 'contact' | 'faqs' | 'shipping' | 'privacy' | 'terms'>('home');
   const [viewParams, setViewParams] = useState<VehicleFilterParams | undefined>(undefined);
   const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
 
-  // User sessions
+  // Customer session
   const [customerUser, setCustomerUser] = useState<CustomerUser | null>(getCurrentCustomer());
-  const [adminUser, setAdminUser] = useState<AdminUser | null>(getCurrentAdmin());
   const [authModalOpen, setAuthModalOpen] = useState(false);
 
   // Persistent interaction states
@@ -167,18 +162,6 @@ export default function App() {
   const cartVehicles = cartIds.map(id => getVehicleById(id)).filter((v): v is Vehicle => v !== null);
   const favoriteVehicles = favorites.map(id => getVehicleById(id)).filter((v): v is Vehicle => v !== null);
 
-  // If in admin view, render AdminPortal layout exclusively
-  if (currentView === 'admin') {
-    return (
-      <AdminPortal
-        currentAdmin={adminUser}
-        onAdminChange={setAdminUser}
-        onBackToStore={() => handleNavigate('home')}
-        onViewVehicle={handleViewDetails}
-      />
-    );
-  }
-
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
       
@@ -190,7 +173,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Main Responsive Navigation */}
+      {/* Main Responsive Navigation (No staff portal) */}
       <Navbar
         currentView={currentView}
         onNavigate={handleNavigate}
@@ -200,7 +183,6 @@ export default function App() {
         settings={siteSettings}
         isLoggedIn={!!customerUser}
         customerName={customerUser?.name}
-        isAdminLoggedIn={!!adminUser}
         onOpenAuth={() => setAuthModalOpen(true)}
       />
 
@@ -224,16 +206,16 @@ export default function App() {
               onToggleCompare={handleToggleCompare}
               onViewDetails={handleViewDetails}
               onQuickInquire={handleAddToCart}
-              onViewAll={() => handleNavigate('browse')}
+              onViewAll={() => handleNavigate('browse', { minPrice: 2500, maxPrice: 8000 })}
             />
 
             <CategoryGrid
-              onSelectCategory={(cat) => handleNavigate('browse', { bodyStyle: cat })}
+              onSelectCategory={(cat) => handleNavigate('browse', { bodyStyle: cat, minPrice: 2500, maxPrice: 8000 })}
               bodyCounts={stats.bodyCounts}
             />
 
             <BudgetSection
-              onSelectBudget={(max) => handleNavigate('browse', { maxPrice: max })}
+              onSelectBudget={(min, max) => handleNavigate('browse', { minPrice: min, maxPrice: max })}
               stats={stats}
             />
 
@@ -324,7 +306,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
+      {/* Footer (No staff console) */}
       <Footer
         onNavigate={handleNavigate}
         settings={siteSettings}
