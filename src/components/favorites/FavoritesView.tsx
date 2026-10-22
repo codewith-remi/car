@@ -10,6 +10,7 @@ interface FavoritesViewProps {
   onToggleCompare: (id: string) => void;
   onViewDetails: (id: string) => void;
   onQuickInquire?: (vehicle: Vehicle) => void;
+  onSendSms?: (vehicle: Vehicle) => void;
   onClearFavorites: () => void;
   onBrowse: () => void;
   onBack: () => void;
@@ -22,6 +23,7 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
   onToggleCompare,
   onViewDetails,
   onQuickInquire,
+  onSendSms,
   onClearFavorites,
   onBrowse,
   onBack
@@ -110,6 +112,7 @@ export const FavoritesView: React.FC<FavoritesViewProps> = ({
               onToggleCompare={onToggleCompare}
               onViewDetails={onViewDetails}
               onQuickInquire={onQuickInquire}
+              onSendSms={onSendSms}
               viewMode="grid"
             />
           ))}

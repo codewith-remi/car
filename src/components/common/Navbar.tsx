@@ -8,7 +8,8 @@ import {
   Menu, 
   X, 
   Search, 
-  Phone
+  Phone,
+  Mail
 } from 'lucide-react';
 import { SiteSettings } from '../../types/vehicle';
 
@@ -53,7 +54,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="font-medium text-slate-100">{settings.announcementText}</span>
             </div>
             <div className="hidden sm:flex items-center gap-4 text-slate-400 shrink-0">
-              <a href={`tel:${settings.supportPhone}`} className="hover:text-white transition-colors flex items-center gap-1.5">
+              <a href="mailto:codewithremi40@gmail.com" className="hover:text-blue-300 transition-colors flex items-center gap-1.5 font-mono text-[11px]">
+                <Mail className="w-3.5 h-3.5 text-blue-400" />
+                <span>codewithremi40@gmail.com</span>
+              </a>
+              <span className="text-slate-700">|</span>
+              <a href={`tel:${settings.supportPhone}`} className="hover:text-white transition-colors flex items-center gap-1.5 text-[11px]">
                 <Phone className="w-3.5 h-3.5 text-blue-400" />
                 <span>{settings.supportPhone}</span>
               </a>

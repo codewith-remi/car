@@ -14,6 +14,7 @@ import { FavoritesView } from './components/favorites/FavoritesView';
 import { InquiryCartView } from './components/cart/InquiryCartView';
 import { CustomerAccountModal } from './components/account/CustomerAccountModal';
 import { StaticPages } from './components/info/StaticPages';
+import { SmsInquiryModal } from './components/common/SmsInquiryModal';
 
 import { 
   Vehicle, 
@@ -56,6 +57,10 @@ export default function App() {
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
   const [comparisonIds, setComparisonIds] = useState<string[]>(getComparisonIds());
   const [cartIds, setCartIds] = useState<string[]>(getInquiryCart());
+
+  // Direct SMS / Inquiry modal state
+  const [smsModalVehicle, setSmsModalVehicle] = useState<Vehicle | null>(null);
+  const [smsModalOpen, setSmsModalOpen] = useState(false);
 
   // Site Settings
   const [siteSettings, setSiteSettings] = useState(getSiteSettings());
@@ -133,6 +138,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleOpenSmsModal = (vehicle: Vehicle) => {
+    setSmsModalVehicle(vehicle);
+    setSmsModalOpen(true);
+  };
+
   const handleNavigate = (view: string, params?: any) => {
     if (view === 'browse') {
       setViewParams(params);
@@ -206,6 +216,7 @@ export default function App() {
               onToggleCompare={handleToggleCompare}
               onViewDetails={handleViewDetails}
               onQuickInquire={handleAddToCart}
+              onSendSms={handleOpenSmsModal}
               onViewAll={() => handleNavigate('browse', { minPrice: 2500, maxPrice: 8000 })}
             />
 
@@ -233,6 +244,7 @@ export default function App() {
             onToggleCompare={handleToggleCompare}
             onViewDetails={handleViewDetails}
             onQuickInquire={handleAddToCart}
+            onSendSms={handleOpenSmsModal}
           />
         )}
 
@@ -272,6 +284,7 @@ export default function App() {
             onToggleCompare={handleToggleCompare}
             onViewDetails={handleViewDetails}
             onQuickInquire={handleAddToCart}
+            onSendSms={handleOpenSmsModal}
             onClearFavorites={handleClearFavorites}
             onBrowse={() => handleNavigate('browse')}
             onBack={() => handleNavigate('home')}
@@ -325,6 +338,16 @@ export default function App() {
         onBrowse={() => {
           setAuthModalOpen(false);
           handleNavigate('browse');
+        }}
+      />
+
+      {/* Global SMS / Vehicle Inquiry Modal */}
+      <SmsInquiryModal
+        vehicle={smsModalVehicle}
+        isOpen={smsModalOpen}
+        onClose={() => {
+          setSmsModalOpen(false);
+          setSmsModalVehicle(null);
         }}
       />
 

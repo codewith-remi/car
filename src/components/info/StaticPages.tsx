@@ -10,10 +10,11 @@ import {
   ArrowLeft, 
   FileText, 
   CheckCircle2, 
-  Send 
+  Send,
+  MessageSquare
 } from 'lucide-react';
-import { SiteSettings } from '../../types/vehicle';
-import { logActivity } from '../../services/storeService';
+import { SiteSettings, PurchaseInquiry } from '../../types/vehicle';
+import { logActivity, submitInquiry, generateInquiryMailtoLink, generateInquirySmsLink } from '../../services/storeService';
 
 interface StaticPageProps {
   page: 'about' | 'contact' | 'faqs' | 'shipping' | 'privacy' | 'terms';
@@ -31,14 +32,29 @@ export const StaticPages: React.FC<StaticPageProps> = ({
   // Contact form state
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
+  const [contactPhone, setContactPhone] = useState('');
   const [contactMessage, setContactMessage] = useState('');
-  const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [submittedInquiry, setSubmittedInquiry] = useState<PurchaseInquiry | null>(null);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactName || !contactEmail) return;
-    setContactSubmitted(true);
-    logActivity('Guest Contact', 'General Contact Message', `Message from ${contactName} (${contactEmail})`, 'inquiry');
+
+    const inq = submitInquiry({
+      customerName: contactName,
+      customerEmail: contactEmail,
+      customerPhone: contactPhone || '(Not provided)',
+      preferredContact: contactPhone ? 'SMS' : 'Email',
+      customerMessage: contactMessage,
+      deliveryRequired: false,
+      deliveryQuoteEstimate: 0,
+      status: 'New',
+      totalValue: 0,
+      items: []
+    });
+
+    setSubmittedInquiry(inq);
+    logActivity('Guest Contact', 'General Inquiry Sent to codewithremi40@gmail.com', `Inquiry ${inq.referenceNumber} from ${contactName} (${contactEmail})`, 'inquiry');
   };
 
   return (
@@ -152,37 +168,97 @@ export const StaticPages: React.FC<StaticPageProps> = ({
 
               {/* Contact Form */}
               <div>
-                {contactSubmitted ? (
-                  <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
+                {submittedInquiry ? (
+                  <div className="p-6 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
                     <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
-                    <h3 className="text-sm font-bold text-emerald-900">Message Received</h3>
+                    <h3 className="text-sm font-bold text-emerald-950">Inquiry Routed to Dealership</h3>
                     <p className="text-xs text-emerald-800">
-                      Thank you for contacting Autoplex. A representative will reach back out within 2–4 business hours.
+                      Your inquiry has been sent to <strong className="font-mono text-slate-900">codewithremi40@gmail.com</strong>.
                     </p>
+
+                    <div className="p-3 bg-white border border-emerald-200 rounded-lg text-left text-xs space-y-1">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Reference:</span>
+                        <span className="font-mono font-bold text-blue-600">{submittedInquiry.referenceNumber}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Destination:</span>
+                        <span className="font-mono font-semibold text-slate-900">codewithremi40@gmail.com</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Direct Reply-To:</span>
+                        <span className="font-semibold text-slate-900">{submittedInquiry.customerEmail}</span>
+                      </div>
+                      {submittedInquiry.customerPhone && (
+                        <div className="flex justify-between">
+                          <span className="text-slate-500">SMS / Phone:</span>
+                          <span className="font-semibold text-slate-900">{submittedInquiry.customerPhone}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="pt-2 flex flex-col gap-2">
+                      <a
+                        href={generateInquiryMailtoLink(submittedInquiry)}
+                        className="w-full py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+                      >
+                        <Send className="w-3.5 h-3.5" />
+                        <span>Send Direct Email to codewithremi40@gmail.com</span>
+                      </a>
+                      {submittedInquiry.customerPhone && (
+                        <a
+                          href={generateInquirySmsLink(submittedInquiry.customerPhone, `Autoplex Contact: ${submittedInquiry.customerMessage}`)}
+                          className="w-full py-2 px-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <MessageSquare className="w-3.5 h-3.5" />
+                          <span>Send as Direct SMS</span>
+                        </a>
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setSubmittedInquiry(null)}
+                      className="text-xs text-slate-600 hover:text-slate-900 underline pt-2 cursor-pointer"
+                    >
+                      Send another inquiry
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleContactSubmit} className="space-y-3 text-xs">
                     <div>
-                      <label className="block font-semibold text-slate-700 mb-0.5">Your Name *</label>
+                      <label className="block font-semibold text-slate-700 mb-0.5">Your Full Name *</label>
                       <input
                         type="text"
                         required
                         value={contactName}
                         onChange={(e) => setContactName(e.target.value)}
                         placeholder="John Smith"
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-0.5">Email Address *</label>
-                      <input
-                        type="email"
-                        required
-                        value={contactEmail}
-                        onChange={(e) => setContactEmail(e.target.value)}
-                        placeholder="john@example.com"
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900"
-                      />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block font-semibold text-slate-700 mb-0.5">Email Address *</label>
+                        <input
+                          type="email"
+                          required
+                          value={contactEmail}
+                          onChange={(e) => setContactEmail(e.target.value)}
+                          placeholder="john@example.com"
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-semibold text-slate-700 mb-0.5">Mobile Phone (For SMS Reply)</label>
+                        <input
+                          type="tel"
+                          value={contactPhone}
+                          onChange={(e) => setContactPhone(e.target.value)}
+                          placeholder="(555) 000-0000"
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        />
+                      </div>
                     </div>
                     <div>
                       <label className="block font-semibold text-slate-700 mb-0.5">Message / Inquiry Details *</label>
@@ -191,17 +267,20 @@ export const StaticPages: React.FC<StaticPageProps> = ({
                         required
                         value={contactMessage}
                         onChange={(e) => setContactMessage(e.target.value)}
-                        placeholder="Enter your message or questions regarding our inventory..."
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900"
+                        placeholder="Ask about a car, financing, or schedule a lot test drive..."
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-xs flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
                     >
                       <Send className="w-3.5 h-3.5" />
-                      <span>Send Message</span>
+                      <span>Send Message to codewithremi40@gmail.com</span>
                     </button>
+                    <p className="text-[11px] text-slate-500 text-center">
+                      Delivered directly to codewithremi40@gmail.com with 2-way reply to your phone or email.
+                    </p>
                   </form>
                 )}
               </div>

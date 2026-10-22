@@ -22,6 +22,7 @@ interface BrowseViewProps {
   onToggleCompare: (id: string) => void;
   onViewDetails: (id: string) => void;
   onQuickInquire?: (vehicle: Vehicle) => void;
+  onSendSms?: (vehicle: Vehicle) => void;
 }
 
 export const BrowseView: React.FC<BrowseViewProps> = ({
@@ -31,7 +32,8 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
   onToggleFavorite,
   onToggleCompare,
   onViewDetails,
-  onQuickInquire
+  onQuickInquire,
+  onSendSms
 }) => {
   // Filter States with strict bounds: min $2,500, max $8,000
   const [query, setQuery] = useState(initialParams?.query || '');
@@ -575,6 +577,7 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
                         onToggleCompare={onToggleCompare}
                         onViewDetails={onViewDetails}
                         onQuickInquire={onQuickInquire}
+                        onSendSms={onSendSms}
                         viewMode="grid"
                       />
                     ))}
@@ -591,6 +594,7 @@ export const BrowseView: React.FC<BrowseViewProps> = ({
                         onToggleCompare={onToggleCompare}
                         onViewDetails={onViewDetails}
                         onQuickInquire={onQuickInquire}
+                        onSendSms={onSendSms}
                         viewMode="list"
                       />
                     ))}

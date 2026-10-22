@@ -18,11 +18,13 @@ import {
   Truck,
   FileCheck,
   Calendar,
-  Sparkles
+  Sparkles,
+  MessageSquare
 } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 import { getSimilarVehicles } from '../../services/inventoryService';
 import { VehicleCard } from '../common/VehicleCard';
+import { SmsInquiryModal } from '../common/SmsInquiryModal';
 
 interface VehicleDetailViewProps {
   vehicle: Vehicle;
@@ -47,6 +49,7 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
 }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [smsModalOpen, setSmsModalOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'inspection' | 'delivery'>('overview');
 
@@ -449,10 +452,18 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
                 <div className="space-y-3">
                   <button
                     onClick={() => onStartInquiry(vehicle)}
-                    className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Mail className="w-4 h-4" />
                     <span>Submit Purchase Inquiry</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSmsModalOpen(true)}
+                    className="w-full py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4 text-blue-400" />
+                    <span>Send SMS / Message Dealer</span>
                   </button>
 
                   <a
@@ -462,6 +473,10 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
                     <Phone className="w-3.5 h-3.5 text-blue-600" />
                     <span>Call Dealership Support</span>
                   </a>
+
+                  <p className="text-[11px] text-center text-slate-500 pt-1">
+                    Direct routing to <span className="font-mono text-slate-700 font-medium">codewithremi40@gmail.com</span> for instant reply.
+                  </p>
                 </div>
               )}
 
@@ -544,21 +559,35 @@ export const VehicleDetailView: React.FC<VehicleDetailViewProps> = ({
 
       {/* Mobile Sticky Buy / Inquire Bar */}
       {vehicle.status === 'Available' && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 p-3 shadow-lg flex items-center justify-between gap-4">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 p-3 shadow-lg flex items-center justify-between gap-3">
           <div>
             <span className="text-[10px] text-slate-400 block uppercase font-medium">Price</span>
-            <span className="text-lg font-bold text-slate-950 tabular-nums">
+            <span className="text-base font-bold text-slate-950 tabular-nums">
               ${vehicle.price.toLocaleString()}
             </span>
           </div>
           <button
-            onClick={() => onStartInquiry(vehicle)}
-            className="flex-1 py-2.5 px-4 bg-blue-600 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm text-center"
+            onClick={() => setSmsModalOpen(true)}
+            className="p-2.5 bg-slate-900 text-white rounded-lg shadow-sm"
+            title="Send SMS"
           >
-            Submit Purchase Inquiry
+            <MessageSquare className="w-4 h-4 text-blue-400" />
+          </button>
+          <button
+            onClick={() => onStartInquiry(vehicle)}
+            className="flex-1 py-2.5 px-3 bg-blue-600 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm text-center truncate"
+          >
+            Inquire / Buy
           </button>
         </div>
       )}
+
+      {/* SMS & Direct Inquiry Modal */}
+      <SmsInquiryModal
+        vehicle={vehicle}
+        isOpen={smsModalOpen}
+        onClose={() => setSmsModalOpen(false)}
+      />
     </div>
   );
 };

@@ -12,7 +12,7 @@ import {
   FileCheck
 } from 'lucide-react';
 import { Vehicle, PurchaseInquiry, CustomerUser } from '../../types/vehicle';
-import { submitInquiry, clearInquiryCart } from '../../services/storeService';
+import { submitInquiry, clearInquiryCart, generateInquiryMailtoLink, generateInquirySmsLink } from '../../services/storeService';
 
 interface InquiryCartViewProps {
   cartVehicles: Vehicle[];
@@ -109,12 +109,15 @@ export const InquiryCartView: React.FC<InquiryCartViewProps> = ({
             </div>
 
             <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">
-              Inquiry Successfully Submitted
+              Inquiry Dispatched to Dealership
             </span>
 
             <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-950 mt-3">
-              We Have Received Your Purchase Inquiry
+              Inquiry Sent to codewithremi40@gmail.com
             </h2>
+            <p className="text-xs text-slate-600 mt-1 max-w-md mx-auto">
+              Your inquiry has been logged and routed to <strong className="text-slate-900 font-mono">codewithremi40@gmail.com</strong>. The dealer can reply directly to your email (<strong className="text-slate-900">{submittedInquiry.customerEmail}</strong>) or phone.
+            </p>
 
             <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 inline-block text-left w-full max-w-md">
               <div className="flex justify-between text-xs py-1">
@@ -122,8 +125,16 @@ export const InquiryCartView: React.FC<InquiryCartViewProps> = ({
                 <span className="font-mono font-bold text-blue-600">{submittedInquiry.referenceNumber}</span>
               </div>
               <div className="flex justify-between text-xs py-1">
-                <span className="text-slate-500">Submitted For:</span>
-                <span className="font-semibold text-slate-800">{submittedInquiry.customerName}</span>
+                <span className="text-slate-500">Destination Email:</span>
+                <span className="font-mono font-semibold text-slate-900">codewithremi40@gmail.com</span>
+              </div>
+              <div className="flex justify-between text-xs py-1">
+                <span className="text-slate-500">Reply-To Address:</span>
+                <span className="font-semibold text-slate-800">{submittedInquiry.customerEmail}</span>
+              </div>
+              <div className="flex justify-between text-xs py-1">
+                <span className="text-slate-500">Customer Phone:</span>
+                <span className="font-semibold text-slate-800">{submittedInquiry.customerPhone}</span>
               </div>
               <div className="flex justify-between text-xs py-1">
                 <span className="text-slate-500">Vehicles Inquired:</span>
@@ -141,13 +152,31 @@ export const InquiryCartView: React.FC<InquiryCartViewProps> = ({
               )}
             </div>
 
+            {/* Direct Mail & SMS Actions */}
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={generateInquiryMailtoLink(submittedInquiry)}
+                className="w-full sm:w-auto px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 shadow-xs"
+              >
+                <Send className="w-4 h-4" />
+                <span>Open in Mail App / Send to codewithremi40@gmail.com</span>
+              </a>
+
+              <a
+                href={generateInquirySmsLink(submittedInquiry.customerPhone, `Autoplex Inquiry ${submittedInquiry.referenceNumber}: Interested in ${submittedInquiry.items[0]?.vehicleTitle || 'Vehicle'}. Sent to codewithremi40@gmail.com.`)}
+                className="w-full sm:w-auto px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 shadow-xs"
+              >
+                <span>Send SMS to Phone</span>
+              </a>
+            </div>
+
             <div className="mt-6 text-xs text-slate-600 text-left bg-blue-50 border border-blue-200 p-4 rounded-xl space-y-2">
               <div className="flex items-start gap-2">
                 <FileCheck className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-slate-900">What happens next:</strong>
+                  <strong className="text-slate-900">Fast 2-Way Communication:</strong>
                   <p className="mt-0.5">
-                    An Autoplex vehicle coordinator has been notified. We will review vehicle readiness, pull fresh condition reports, and reach out to you via your preferred contact method (<strong className="text-slate-900">{submittedInquiry.preferredContact}</strong>).
+                    Your inquiry has been packaged with complete vehicle specifications and vehicle ID. When the owner at <strong className="text-slate-900">codewithremi40@gmail.com</strong> opens the inquiry, they can directly click "Reply" to message you back at <strong className="text-slate-900">{submittedInquiry.customerEmail}</strong>.
                   </p>
                 </div>
               </div>
@@ -156,7 +185,7 @@ export const InquiryCartView: React.FC<InquiryCartViewProps> = ({
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 onClick={onBrowse}
-                className="w-full sm:w-auto px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-lg transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs rounded-lg transition-colors cursor-pointer"
               >
                 Browse More Inventory
               </button>

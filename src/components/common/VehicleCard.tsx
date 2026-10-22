@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Layers, Eye, MapPin, Gauge, ShieldCheck, Check } from 'lucide-react';
+import { Heart, Layers, Eye, MapPin, Gauge, ShieldCheck, Check, MessageSquare } from 'lucide-react';
 import { Vehicle } from '../../types/vehicle';
 
 interface VehicleCardProps {
@@ -10,6 +10,7 @@ interface VehicleCardProps {
   onToggleCompare: (id: string) => void;
   onViewDetails: (id: string) => void;
   onQuickInquire?: (vehicle: Vehicle) => void;
+  onSendSms?: (vehicle: Vehicle) => void;
   viewMode?: 'grid' | 'list';
 }
 
@@ -21,6 +22,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   onToggleCompare,
   onViewDetails,
   onQuickInquire,
+  onSendSms,
   viewMode = 'grid'
 }) => {
   const [imgError, setImgError] = useState(false);
@@ -141,6 +143,16 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </div>
 
             <div className="flex items-center gap-2">
+              {onSendSms && vehicle.status === 'Available' && (
+                <button
+                  onClick={() => onSendSms(vehicle)}
+                  className="px-2.5 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition-colors cursor-pointer flex items-center gap-1"
+                  title="Send SMS inquiry to codewithremi40@gmail.com"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-blue-600" />
+                  <span className="hidden sm:inline">SMS</span>
+                </button>
+              )}
               {onQuickInquire && vehicle.status === 'Available' && (
                 <button
                   onClick={() => onQuickInquire(vehicle)}
@@ -271,12 +283,27 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </span>
           </div>
 
-          <button
-            onClick={() => onViewDetails(vehicle.id)}
-            className="px-3.5 py-1.5 text-xs font-semibold text-white bg-slate-900 group-hover:bg-blue-600 rounded-lg transition-colors cursor-pointer shrink-0"
-          >
-            Details
-          </button>
+          <div className="flex items-center gap-1.5">
+            {onSendSms && vehicle.status === 'Available' && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSendSms(vehicle);
+                }}
+                className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 transition-colors cursor-pointer"
+                title="Send SMS inquiry to codewithremi40@gmail.com"
+                aria-label="Send SMS inquiry"
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+              </button>
+            )}
+            <button
+              onClick={() => onViewDetails(vehicle.id)}
+              className="px-3.5 py-1.5 text-xs font-semibold text-white bg-slate-900 group-hover:bg-blue-600 rounded-lg transition-colors cursor-pointer shrink-0"
+            >
+              Details
+            </button>
+          </div>
         </div>
       </div>
     </div>

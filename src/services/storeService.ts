@@ -13,7 +13,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   announcementText: '🔥 Verified Pre-Owned Event: Over 5,000 Vehicles Priced Strictly Between $2,500 and $8,000!',
   announcementEnabled: true,
   supportPhone: '+1 (800) 555-AUTO',
-  supportEmail: 'inquiries@autoplexgroup.com',
+  supportEmail: 'codewithremi40@gmail.com',
   dealershipAddress: '10400 Expressway Blvd, Dallas, TX 75238',
   heroHeadline: 'Your Next Car. Your Best Deal.',
   heroSubheadline: 'Discover thousands of reliable, certified pre-owned vehicles strictly priced between $2,500 and $8,000. Comprehensive mechanical check on every vehicle.',
@@ -233,6 +233,36 @@ export function getInquiries(): PurchaseInquiry[] {
   }
 }
 
+export function generateInquiryMailtoLink(inquiry: PurchaseInquiry): string {
+  const recipient = 'codewithremi40@gmail.com';
+  const vehicleList = inquiry.items.map(i => `${i.vehicleTitle} ($${i.price.toLocaleString()}, VIN: ${i.vin}, Location: ${i.location})`).join('\n');
+  const subject = encodeURIComponent(`Autoplex Inquiry [${inquiry.referenceNumber}] - ${inquiry.items[0]?.vehicleTitle || 'Vehicle'}`);
+  const bodyText = `Hello Autoplex Auto Group (codewithremi40@gmail.com),
+
+I would like to submit an inquiry / SMS question regarding this vehicle:
+
+${vehicleList}
+
+--- Customer Contact Details ---
+Name: ${inquiry.customerName}
+Phone / SMS: ${inquiry.customerPhone}
+Email: ${inquiry.customerEmail}
+Preferred Contact: ${inquiry.preferredContact}
+Delivery: ${inquiry.deliveryRequired ? `Yes (Destination: ${inquiry.deliveryCity || ''} ${inquiry.deliveryPostalCode || ''})` : 'Lot Pickup'}
+
+--- Customer Message ---
+${inquiry.customerMessage || 'Please confirm availability and appointment options for this vehicle.'}
+
+Reference Number: ${inquiry.referenceNumber}
+(Reply directly to this email to contact the customer)`;
+
+  return `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+}
+
+export function generateInquirySmsLink(phone: string, text: string): string {
+  return `sms:${phone}?body=${encodeURIComponent(text)}`;
+}
+
 export function submitInquiry(inquiryData: Omit<PurchaseInquiry, 'id' | 'referenceNumber' | 'createdAt' | 'updatedAt' | 'internalNotes' | 'replyHistory'>): PurchaseInquiry {
   const inquiries = getInquiries();
   const randNum = Math.floor(1000 + Math.random() * 9000);
@@ -252,7 +282,12 @@ export function submitInquiry(inquiryData: Omit<PurchaseInquiry, 'id' | 'referen
   inquiries.unshift(newInquiry);
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY_INQUIRIES, JSON.stringify(inquiries));
-    logActivity('Guest / Customer', 'New Purchase Inquiry', `Submitted inquiry ${ref} for ${newInquiry.items.length} vehicle(s). Total $${newInquiry.totalValue.toLocaleString()}`, 'inquiry');
+    logActivity(
+      newInquiry.customerName,
+      'Inquiry Dispatched to codewithremi40@gmail.com',
+      `Delivered inquiry ${ref} to codewithremi40@gmail.com. Reply-To set to ${newInquiry.customerEmail} / Phone ${newInquiry.customerPhone}`,
+      'inquiry'
+    );
   }
 
   return newInquiry;

@@ -11,6 +11,7 @@ interface FeaturedGridProps {
   onToggleCompare: (id: string) => void;
   onViewDetails: (id: string) => void;
   onQuickInquire?: (vehicle: Vehicle) => void;
+  onSendSms?: (vehicle: Vehicle) => void;
   onViewAll: () => void;
 }
 
@@ -22,6 +23,7 @@ export const FeaturedGrid: React.FC<FeaturedGridProps> = ({
   onToggleCompare,
   onViewDetails,
   onQuickInquire,
+  onSendSms,
   onViewAll
 }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'tier2500to4000' | 'tier4000to6000' | 'suv' | 'sedan'>('all');
@@ -117,6 +119,7 @@ export const FeaturedGrid: React.FC<FeaturedGridProps> = ({
               onToggleCompare={onToggleCompare}
               onViewDetails={onViewDetails}
               onQuickInquire={onQuickInquire}
+              onSendSms={onSendSms}
               viewMode="grid"
             />
           ))}
