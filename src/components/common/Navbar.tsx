@@ -9,7 +9,8 @@ import {
   X, 
   Search, 
   Phone,
-  Mail
+  Mail,
+  ShieldCheck
 } from 'lucide-react';
 import { SiteSettings } from '../../types/vehicle';
 
@@ -180,10 +181,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Account / Login */}
             <button
               onClick={onOpenAuth}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors cursor-pointer"
+              className={`hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg transition-colors cursor-pointer ${
+                isLoggedIn
+                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
             >
-              <User className="w-4 h-4 text-slate-500" />
-              <span className="max-w-24 truncate">{isLoggedIn ? (customerName || 'My Account') : 'Sign In'}</span>
+              {isLoggedIn ? (
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              ) : (
+                <User className="w-4 h-4 text-slate-500" />
+              )}
+              <span className="max-w-28 truncate">{isLoggedIn ? (customerName || 'Verified User') : 'Sign In'}</span>
             </button>
 
             {/* Primary Action Button */}
@@ -265,10 +274,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
             <button
               onClick={onOpenAuth}
-              className="flex items-center gap-2 text-sm font-medium text-slate-700"
+              className="flex items-center gap-2 text-sm font-semibold text-slate-800"
             >
-              <User className="w-4 h-4 text-slate-500" />
-              <span>{isLoggedIn ? (customerName || 'Account') : 'Customer Sign In'}</span>
+              {isLoggedIn ? (
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              ) : (
+                <User className="w-4 h-4 text-slate-500" />
+              )}
+              <span>{isLoggedIn ? (customerName || 'Verified Customer') : 'Customer Sign In'}</span>
             </button>
 
             <button

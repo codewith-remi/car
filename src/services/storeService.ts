@@ -1,10 +1,9 @@
-import { PurchaseInquiry, CustomerUser, AdminUser, SiteSettings, ActivityLog, Vehicle } from '../types/vehicle';
+import { PurchaseInquiry, CustomerUser, SiteSettings, ActivityLog, Vehicle } from '../types/vehicle';
 
 const STORAGE_KEY_FAVORITES = 'autoplex_favorites';
 const STORAGE_KEY_COMPARE = 'autoplex_compare_ids';
 const STORAGE_KEY_INQUIRIES = 'autoplex_inquiries';
 const STORAGE_KEY_CUSTOMER = 'autoplex_customer_user';
-const STORAGE_KEY_ADMIN = 'autoplex_admin_user';
 const STORAGE_KEY_SETTINGS = 'autoplex_site_settings';
 const STORAGE_KEY_LOGS = 'autoplex_activity_logs';
 const STORAGE_KEY_CART = 'autoplex_inquiry_cart';
@@ -407,25 +406,5 @@ export function setCustomerSession(customer: CustomerUser | null): void {
     localStorage.removeItem(STORAGE_KEY_CUSTOMER);
   } else {
     localStorage.setItem(STORAGE_KEY_CUSTOMER, JSON.stringify(customer));
-  }
-}
-
-// Admin Session State
-export function getCurrentAdmin(): AdminUser | null {
-  if (typeof window === 'undefined') return null;
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY_ADMIN);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
-}
-
-export function setAdminSession(admin: AdminUser | null): void {
-  if (typeof window === 'undefined') return;
-  if (!admin) {
-    localStorage.removeItem(STORAGE_KEY_ADMIN);
-  } else {
-    localStorage.setItem(STORAGE_KEY_ADMIN, JSON.stringify(admin));
   }
 }

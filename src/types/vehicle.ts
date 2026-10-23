@@ -124,20 +124,14 @@ export interface CustomerUser {
   name: string;
   phone: string;
   city: string;
+  isVerified: boolean;
+  verifiedAt?: string;
   createdAt: string;
   notificationPreferences: {
     emailAlerts: boolean;
     smsAlerts: boolean;
     priceDropAlerts: boolean;
   };
-}
-
-export interface AdminUser {
-  id: string;
-  name: string;
-  email: string;
-  role: 'Super Administrator' | 'Inventory Manager' | 'Sales Agent';
-  avatar?: string;
 }
 
 export interface SiteSettings {
